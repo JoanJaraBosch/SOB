@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Room.findAll", query = "SELECT c FROM Room c"),
-    @NamedQuery(name = "Room.findByRoomId", query = "SELECT c FROM Customer c WHERE c.roomID = :roomID"),
+    @NamedQuery(name = "Room.findByRoomId", query = "SELECT c FROM Room c WHERE c.roomID = :roomID"),
     @NamedQuery(name = "Room.findBySimple", query = "SELECT c FROM Room c WHERE c.simple = :simple"),
     @NamedQuery(name = "Room.findByCity", query = "SELECT c FROM Room c WHERE c.city = :city"),
     @NamedQuery(name = "Room.findByPrice", query = "SELECT c FROM Room c WHERE c.price = :price"),
@@ -54,7 +54,7 @@ public class Room implements Serializable{
     private Float price = 0.0f;
     @Column(name = "AGE")
     private Integer age = 0;
-    @Column(name = "SIMPLE")
+    @Column(name = "SIMPLE_ROOM")
     private Boolean simple = false;
     @Column(name = "INDOOR")
     private Boolean indoor = false;
