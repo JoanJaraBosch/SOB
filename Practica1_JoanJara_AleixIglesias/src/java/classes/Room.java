@@ -6,6 +6,8 @@
 package classes;
 
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findByIndoor", query = "SELECT c FROM Room c WHERE c.indoor = :indoor"),
     @NamedQuery(name = "Room.findBySmoker", query = "SELECT c FROM Room c WHERE c.smoker = :smoker"),
     @NamedQuery(name = "Room.findByFurnished", query = "SELECT c FROM Room c WHERE c.furnished = :furnished")})
-public class Room implements Serializable{
+public class Room implements Serializable, Comparable<Room>{
     @Id
     @Basic(optional = false)
     @NotNull
@@ -151,5 +153,23 @@ public class Room implements Serializable{
     public void setAge(Integer age) {
         this.age = age;
     }  
+
+    public int compareTo(Room t) {
+        return Comparators.PRICECOMP.compare(this, t);
+    }
     
+     public static class Comparators {
+        public static Comparator<Room> PRICECOMP = new Comparator<Room>() {
+            @Override
+            public int compare(Room t, Room t1) {
+                if(t.getPrice()==t1.getPrice()){
+                    return 0;
+                }else if(t.getPrice()<t1.getPrice()){
+                    return -1;
+                }else{
+                    return 1;
+                }
+            }
+           };
+     }
 }
