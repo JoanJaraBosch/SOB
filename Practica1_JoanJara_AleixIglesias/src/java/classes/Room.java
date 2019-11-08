@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findBySmoker", query = "SELECT c FROM Room c WHERE c.smoker = :smoker"),
     @NamedQuery(name = "Room.findByFurnished", query = "SELECT c FROM Room c WHERE c.furnished = :furnished")})
 public class Room implements Serializable, Comparable<Room>{
+    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -67,12 +68,10 @@ public class Room implements Serializable, Comparable<Room>{
     @Column(name = "PET")
     private Boolean pet = false;
 
-    public Room()
-    {
-        
-    }
     
-    public Room(String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker) {
+     
+    public Room(Integer id,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
+        this.roomID=id;
         this.description=description;
         this.city=city;
         this.price=price;
@@ -80,6 +79,21 @@ public class Room implements Serializable, Comparable<Room>{
         this.indoor=indoor;
         this.furnished=furnished;
         this.smoker=smoker;
+        this.age=age;
+        this.pet=pet;
+    }
+    
+    public Room()
+    {
+        
+    }
+
+    public Integer getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(Integer roomID) {
+        this.roomID = roomID;
     }
 
     public String getDescription() {
@@ -146,7 +160,7 @@ public class Room implements Serializable, Comparable<Room>{
         this.pet = pet;
     }  
     
-    public Integer getAget() {
+    public Integer getAge() {
         return age;
     }
 
@@ -172,4 +186,17 @@ public class Room implements Serializable, Comparable<Room>{
             }
            };
      }
+
+    @Override
+    public String toString() {
+        return "Room{" + "roomID=" + roomID + ", description=" + description + ", city=" + city + ", price=" + price + ", age=" + age + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + ", smoker=" + smoker + ", pet=" + pet + '}';
+    }
+    
+    public Integer maxID(List<Room> rooms){
+        Integer id=0;
+        for(Room a:rooms){
+            if(a.getRoomID()>id) id = a.getRoomID();
+        }
+        return id;
+    }
 }
