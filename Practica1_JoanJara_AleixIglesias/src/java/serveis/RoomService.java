@@ -9,6 +9,7 @@ import classes.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

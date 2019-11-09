@@ -35,7 +35,7 @@
             /* drop tables if they exist */
             String tablenames[] = new String[] {
                 "ROOM",
-                "CLIENT",
+                //"CLIENT",
                 /*"DISCOUNT_CODE",
                 "MICRO_MARKET",*/
             };
@@ -51,7 +51,7 @@
             /* creating tables */
             String tables[] = new String[] {
                 "CREATE TABLE ROOM (ROOM_ID INTEGER NOT NULL, DESCRIPTION VARCHAR(400) NOT NULL, CITY VARCHAR(25), PRICE DECIMAL(8, 4),SIMPLE_ROOM BOOLEAN, INDOOR BOOLEAN, FURNISHED BOOLEAN, SMOKER BOOLEAN, PET BOOLEAN, AGE INTEGER NOT NULL,PRIMARY KEY (ROOM_ID))",
-                "CREATE TABLE CLIENT (ID INTEGER NOT NULL, USERNAME VARCHAR(10) NOT NULL, PASSWORD VARCHAR(10) NOT NULL, TOKEN VARCHAR(10) NOT NULL,PRIMARY KEY (ID))",
+                //"CREATE TABLE CLIENT (ID INTEGER NOT NULL, USERNAME VARCHAR(10) NOT NULL, PASSWORD VARCHAR(10) NOT NULL, TOKEN VARCHAR(10) NOT NULL,PRIMARY KEY (ID))",
                 /*"CREATE TABLE DISCOUNT_CODE (DISCOUNT_CODE CHAR(1) NOT NULL, RATE DECIMAL(4, 2), PRIMARY KEY (DISCOUNT_CODE))",
                 "CREATE TABLE MICRO_MARKET (ZIP_CODE VARCHAR(10) NOT NULL, RADIUS DOUBLE, AREA_LENGTH DOUBLE, AREA_WIDTH DOUBLE, PRIMARY KEY (ZIP_CODE))",
             */
@@ -76,7 +76,7 @@
                 "INSERT INTO ROOM VALUES (4, 'Labitacio es gran i neta. Es indoor i permet gossets i gats.', 'Reus', 330.00, TRUE, FALSE, TRUE, FALSE, TRUE, 18)",
 
                 
-                "INSERT INTO CLIENT VALUES(1,'sob','sob', 'null')",
+                //"INSERT INTO CLIENT VALUES(1,'sob','sob', 'null')",
                 /*"INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (2, 'M', '95035', 'New Enterprises', '9754 Main Street', 'P.O. Box 567', 'Miami', 'FL', '305-555-0148', '305-555-0149', 'www.new.example.com', 50000)",
                 "INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (25, 'M', '85638', 'Wren Computers', '8989 Red Albatross Drive', 'Suite 9897', 'Houston', 'TX', '214-555-0133', '214-555-0134', 'www.wrencomp.example.com', 25000)",
                 "INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (3, 'L', '12347', 'Small Bill Company', '8585 South Upper Murray Drive', 'P.O. Box 456', 'Alanta', 'GA', '555-555-0175', '555-555-0176', 'www.smallbill.example.com', 90000)",
