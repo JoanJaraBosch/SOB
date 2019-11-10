@@ -19,66 +19,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Joan Jara and Aleix Iglesias
+ * @author Joan Jara
  */
 @Entity
 @Table(name = "CLIENT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
-    @NamedQuery(name = "Client.findByRoomId", query = "SELECT c FROM Client c WHERE c.id = :id"),
-    @NamedQuery(name = "Client.findByUsername", query = "SELECT c FROM Client c WHERE c.username = :username")})
+    @NamedQuery(name = "Client.findByUsername", query = "SELECT c FROM Client c WHERE c.username = :username"),
+    @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password")})
 public class Client implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    private Integer id;
-    @Size(max = 10)
-    @Column(name = "USERNAME")
-    private String username;
-    @Size(max = 10)
+    @Size(max = 400)
     @Column(name = "PASSWORD")
-    private String password;
-    @Size(max = 10)
-    @Column(name = "TOKEN")
-    private String token;
+    private String password = "";
+    @Size(max = 30)
+    @Column(name = "USERNAME")
+    private String username = "";
 
     
+    public Client(){
+        
+    }
     
-      public Client(Integer id,String username, String password) {
-        this.id=id;
-        this.username=username;
+     public Client(String username, String password){
         this.password=password;
-    }
-    
-     public Client() {
-         
-    }
-     
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        this.username=username;
     }
 
     public String getPassword() {
@@ -88,4 +57,13 @@ public class Client implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+   
 }
