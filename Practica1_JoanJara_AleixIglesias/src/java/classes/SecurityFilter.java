@@ -20,10 +20,11 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class SecurityFilter implements ContainerRequestFilter {
 
-    private static final String AUTHORITATION_HEADER= "Authoritation";
+    private static final String AUTHORITATION_HEADER= "Authorization";
     private static final String AUTHORITATION_HEADER_PREFIX= "Basic ";    
-    private static final String SECURED_URL= "room ";    
-    
+    private static final String SECURED_URL= "room";    
+    String username, auth;
+    String password;
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         if(requestContext.getUriInfo().getPath().contains(SECURED_URL)){
@@ -33,8 +34,8 @@ public class SecurityFilter implements ContainerRequestFilter {
                 auth = auth.replace(AUTHORITATION_HEADER_PREFIX, "");
                 String decode = Base64.base64Decode(auth);
                 StringTokenizer tokenizer = new StringTokenizer(decode, ":");
-                String username = tokenizer.nextToken();
-                String password = tokenizer.nextToken();
+                username = tokenizer.nextToken();
+                password = tokenizer.nextToken();
 
                 if("sob".equals(username) && "sob".equals(password)){
                     return;

@@ -31,7 +31,7 @@ import javax.ws.rs.core.Response;
  * @author Joan Jara
  */
 @Stateless
-@Path("/room")
+@Path("room")
 public class RoomService extends AbstractFacade<Room>{
     
     @PersistenceContext(unitName = "sob_grup_04")
