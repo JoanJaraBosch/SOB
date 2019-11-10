@@ -24,7 +24,7 @@ public class SecurityFilter implements ContainerRequestFilter {
 
     private static final String AUTHORITATION_HEADER= "Authorization";
     private static final String AUTHORITATION_HEADER_PREFIX= "Basic ";    
-    private static final String SECURED_URL= "room";    
+    private static final String SECURED_URL= "tenant";    
     String username, auth;
     String password;
     
@@ -43,11 +43,10 @@ public class SecurityFilter implements ContainerRequestFilter {
                 username = tokenizer.nextToken();
                 password = tokenizer.nextToken();
                 javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-                cq.select(cq.from(Client.class));
-                List<Client> aux = getEntityManager().createQuery(cq).getResultList();
+                cq.select(cq.from(Tenant.class));
+                List<Tenant> aux = getEntityManager().createQuery(cq).getResultList();
                 if(aux!=null){
-                    for(Client c : aux){
-
+                    for(Tenant c : aux){
                         if(c.getUsername().equals(username) && c.getPassword().equals(password)){
                             return;
                         }
