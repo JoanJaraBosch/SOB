@@ -9,6 +9,7 @@ import classes.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.*;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,6 +24,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import static javax.ws.rs.client.Entity.entity;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response; 
 
@@ -72,10 +74,15 @@ public class RoomService extends AbstractFacade<Room>{
                 Collections.sort(aux, Room.Comparators.PRICECOMP);
                 Collections.reverse(aux);
             }
+            else
+            {
+                return Response.status(422).entity("You have to equal de sort parameter to asc or desc to search ascendent or descendent prices.").build();
+            }
         }catch(java.lang.NullPointerException e){
-            
+            return Response.status(422).entity("The query parameter sort has to be used.").build();
         }
-        return Response.ok(aux,MediaType.APPLICATION_JSON).build();
+        GenericEntity<List<Room>> entity = new GenericEntity<List<Room>>(aux) {};
+        return Response.ok(entity,MediaType.APPLICATION_JSON).build();
     }
    
     @GET

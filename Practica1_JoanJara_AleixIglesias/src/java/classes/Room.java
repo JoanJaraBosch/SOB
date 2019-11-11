@@ -12,8 +12,10 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,13 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findBySimple", query = "SELECT c FROM Room c WHERE c.simple = :simple"),
     @NamedQuery(name = "Room.findByCity", query = "SELECT c FROM Room c WHERE c.city = :city"),
     @NamedQuery(name = "Room.findByPrice", query = "SELECT c FROM Room c WHERE c.price = :price"),
-    @NamedQuery(name = "Room.findByAge", query = "SELECT c FROM Room c WHERE c.age = :age"),
-    @NamedQuery(name = "Room.findByNotIndoor", query = "SELECT c FROM Room c WHERE c.indoor <> :indoor"),
-    @NamedQuery(name = "Room.findByNotSmoker", query = "SELECT c FROM Room c WHERE c.smoker <> :smoker"),
-    @NamedQuery(name = "Room.findByNotPet", query = "SELECT c FROM Room c WHERE c.pet <> :pet"),
-    @NamedQuery(name = "Room.findByPet", query = "SELECT c FROM Room c WHERE c.pet = :pet"),
+    @NamedQuery(name = "Room.findByAdreça", query = "SELECT c FROM Room c WHERE c.adreça = :adreça"),
     @NamedQuery(name = "Room.findByIndoor", query = "SELECT c FROM Room c WHERE c.indoor = :indoor"),
-    @NamedQuery(name = "Room.findBySmoker", query = "SELECT c FROM Room c WHERE c.smoker = :smoker"),
+    @NamedQuery(name = "Room.findByZip", query = "SELECT c FROM Room c WHERE c.zip = :zip"),
     @NamedQuery(name = "Room.findByFurnished", query = "SELECT c FROM Room c WHERE c.furnished = :furnished")})
 public class Room implements Serializable, Comparable<Room>{
     private static final long serialVersionUID = 1L;
@@ -47,30 +45,31 @@ public class Room implements Serializable, Comparable<Room>{
     @NotNull
     @Column(name = "ROOM_ID")
     private Integer roomID;
+    @Column(name = "ZIPCODE")
+    private Integer zip;        
     @Size(max = 400)
     @Column(name = "DESCRIPTION")
     private String description = "";
+    @Column(name = "ADREÇA")
+    private String adreça = "";
     @Size(max = 30)
     @Column(name = "CITY")
     private String city = "";
     @Column(name = "PRICE")
     private Float price = 0.0f;
-    @Column(name = "AGE")
-    private Integer age = 0;
     @Column(name = "SIMPLE_ROOM")
     private Boolean simple = false;
     @Column(name = "INDOOR")
     private Boolean indoor = false;
     @Column(name = "FURNISHED")
     private Boolean furnished = false;
-    @Column(name = "SMOKER")
-    private Boolean smoker = false;
-    @Column(name = "PET")
-    private Boolean pet = false;
-
-    
      
-    public Room(Integer id,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
+    
+   /* @OneToOne
+    @JoinColumn(name = "RENTER_ID")
+    private Renter renter;*/
+    
+    public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
         this.roomID=id;
         this.description=description;
         this.city=city;
@@ -78,9 +77,8 @@ public class Room implements Serializable, Comparable<Room>{
         this.simple=simple;
         this.indoor=indoor;
         this.furnished=furnished;
-        this.smoker=smoker;
-        this.age=age;
-        this.pet=pet;
+        this.adreça=adreça;
+        this.zip=zip;
     }
     
     public Room()
@@ -144,29 +142,23 @@ public class Room implements Serializable, Comparable<Room>{
         this.furnished = furnished;
     }
 
-    public Boolean getSmoker() {
-        return smoker;
+    public Integer getZip() {
+        return zip;
     }
 
-    public void setSmoker(Boolean smoker) {
-        this.smoker = smoker;
-    }  
+    public void setZip(Integer zip) {
+        this.zip = zip;
+    }
+
+    public String getAdreça() {
+        return adreça;
+    }
+
+    public void setAdreça(String adreça) {
+        this.adreça = adreça;
+    }
+
     
-    public Boolean getPet() {
-        return pet;
-    }
-
-    public void setPet(Boolean pet) {
-        this.pet = pet;
-    }  
-    
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }  
 
     public int compareTo(Room t) {
         return Comparators.PRICECOMP.compare(this, t);
@@ -189,8 +181,16 @@ public class Room implements Serializable, Comparable<Room>{
 
     @Override
     public String toString() {
-        return "Room{" + "roomID=" + roomID + ", description=" + description + ", city=" + city + ", price=" + price + ", age=" + age + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + ", smoker=" + smoker + ", pet=" + pet + '}';
+        return "Room{" + "roomID=" + roomID + ", zip=" + zip + ", description=" + description + ", adre\u00e7a=" + adreça + ", city=" + city + ", price=" + price + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + '}';
     }
+/*
+    public Renter getRenter() {
+        return renter;
+    }
+
+    public void setRenter(Renter renter) {
+        this.renter = renter;
+    }*/
     
     public Integer maxID(List<Room> rooms){
         Integer id=0;
