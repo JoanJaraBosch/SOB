@@ -65,9 +65,13 @@ public class Room implements Serializable, Comparable<Room>{
     private Boolean furnished = false;
      
     
-   /* @OneToOne
+    @OneToOne
     @JoinColumn(name = "RENTER_ID")
-    private Renter renter;*/
+    private Renter renter;
+    
+    @OneToOne
+    @JoinColumn(name = "TENANT_ID")
+    private Tenant tenant;
     
     public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
         this.roomID=id;
@@ -183,14 +187,14 @@ public class Room implements Serializable, Comparable<Room>{
     public String toString() {
         return "Room{" + "roomID=" + roomID + ", zip=" + zip + ", description=" + description + ", adre\u00e7a=" + adreça + ", city=" + city + ", price=" + price + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + '}';
     }
-/*
+
     public Renter getRenter() {
         return renter;
     }
 
     public void setRenter(Renter renter) {
         this.renter = renter;
-    }*/
+    }
     
     public Integer maxID(List<Room> rooms){
         Integer id=0;
