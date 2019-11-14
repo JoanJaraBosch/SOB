@@ -51,7 +51,6 @@ public class RoomService extends AbstractFacade<Room>{
     }
     
     @GET
-    @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByCriterion(@QueryParam("location") String city, @QueryParam("sort") String criterion) {
         List<Room> aux = new ArrayList<Room>();
@@ -93,7 +92,6 @@ public class RoomService extends AbstractFacade<Room>{
     }
     
     @POST
-    @Path("")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createRoom(Room entity) {
         if(entity==null || entity.getRoomID()==null) return Response.status(400).build();

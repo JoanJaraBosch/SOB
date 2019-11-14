@@ -22,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -41,9 +42,28 @@ public class TenantService extends AbstractFacade<Tenant>{
     
     @GET
     @Path("{id}")
-    public Response find(@PathParam("id") Integer id) {
+    public Response findById(@PathParam("id") Integer id) {
         if(super.find(id)==null) return Response.status(404).build();
         return Response.ok(super.find(id), MediaType.APPLICATION_JSON).build();
+    }
+    
+    @GET
+    public Response find() {
+        List<Tenant> tenants = super.findAll();
+        String json = "{";
+        Boolean primer=true;
+        for(Tenant t: tenants){
+            if(primer){
+                json+=" Tenant: "+t.getName()+" "+t.getSurname();
+                primer=false;
+            }
+            else{
+                 json+=", Tenant: "+t.getName()+" "+t.getSurname();
+            }
+        }
+        json+="}";
+        if(tenants==null) return Response.status(404).build();
+        return Response.ok(json,MediaType.APPLICATION_JSON).build();
     }
     
     @POST
