@@ -42,16 +42,11 @@ public class SecurityFilter implements ContainerRequestFilter {
                 StringTokenizer tokenizer = new StringTokenizer(decode, ":");
                 username = tokenizer.nextToken();
                 password = tokenizer.nextToken();
-                javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-                cq.select(cq.from(Tenant.class));
-                List<Tenant> aux = getEntityManager().createQuery(cq).getResultList();
-                if(aux!=null){
-                    for(Tenant c : aux){
-                        if(c.getUsername().equals(username) && c.getPassword().equals(password)){
-                            return;
-                        }
-                    }
+               
+                if("sob".equals(username) && "sob".equals(password)){
+                    return;
                 }
+                  
             }
             Response unauthorized = Response.status(401).entity("User cannot access because don't have the suficient rigths.").build();
             requestContext.abortWith(unauthorized);

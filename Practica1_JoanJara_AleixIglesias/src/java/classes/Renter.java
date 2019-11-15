@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Renter.findBySurname", query = "SELECT c FROM Renter c WHERE c.adreça = :adreça"),
     @NamedQuery(name = "Renter.findByEmail", query = "SELECT c FROM Renter c WHERE c.email = :email"),
     @NamedQuery(name = "Renter.findByZip", query = "SELECT c FROM Renter c WHERE c.zip = :zip"),
+    @NamedQuery(name = "Renter.findBySex", query = "SELECT c FROM Renter c WHERE c.sex = :sex"),
     @NamedQuery(name = "Renter.findByCity", query = "SELECT c FROM Renter c WHERE c.city = :city"),
     @NamedQuery(name = "Renter.findByAgeMax", query = "SELECT c FROM Renter c WHERE c.agemax = :agemax"),
     @NamedQuery(name = "Renter.findByAgeMin", query = "SELECT c FROM Renter c WHERE c.agemin = :agemin"),
@@ -50,39 +51,49 @@ public class Renter implements Serializable{
     private Integer zip;        
     @Size(max = 400)
     @Column(name = "EMAIL")
-    private String email = "";
+    private String email;
+    @Size(max = 20)
+    @Column(name = "SEX")
+    private String sex;
     @Size(max = 400)
     @Column(name = "NAME")
-    private String name = "";
+    private String name;
     @Size(max = 400)
     @Column(name = "SURNAME")
-    private String surname = "";
+    private String surname;
     @Column(name = "ADREÇA")
-    private String adreça = "";
+    private String adreça;
     @Size(max = 30)
     @Column(name = "CITY")
-    private String city = "";
+    private String city;
     @Column(name = "AGE_MAX")
-    private Integer agemax = 100;
+    private Integer agemax;
     @Column(name = "AGE_MIN")
-    private Integer agemin = 0;
+    private Integer agemin;
     @Column(name = "SMOKER")
-    private Boolean smoker = false;
+    private Boolean smoker;
     @Column(name = "PET")
-    private Boolean pet = false;
-/*
-    @OneToOne(mappedBy="renter")
-    @JoinColumn(name = "ROOM_ID_FOREIGN")
-    private Room room;
-   */ 
-    public Renter(Integer id, Integer zip) {
-        this.id = id;
-        this.zip = zip;
-    }
+    private Boolean pet;
+   
 
     public Renter() {
     }
 
+    public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adreça, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet) {
+        this.id = id;
+        this.zip = zip;
+        this.email = email;
+        this.sex = sex;
+        this.name = name;
+        this.surname = surname;
+        this.adreça = adreça;
+        this.city = city;
+        this.agemax = agemax;
+        this.agemin = agemin;
+        this.smoker = smoker;
+        this.pet = pet;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -171,8 +182,11 @@ public class Renter implements Serializable{
         this.surname = surname;
     }
 
-    @Override
-    public String toString() {
-        return "Renter{" + "id=" + id + ", zip=" + zip + ", email=" + email + ", name=" + name + ", surname=" + surname + ", adre\u00e7a=" + adreça + ", city=" + city + ", agemax=" + agemax + ", agemin=" + agemin + ", smoker=" + smoker + ", pet=" + pet + '}';
-    } 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 }

@@ -195,6 +195,14 @@ public class Room implements Serializable, Comparable<Room>{
     public void setRenter(Renter renter) {
         this.renter = renter;
     }
+
+    public Tenant getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Tenant tenant) {
+        this.tenant = tenant;
+    }
     
     public Integer maxID(List<Room> rooms){
         Integer id=0;

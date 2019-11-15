@@ -5,11 +5,13 @@
  */
 package serveis;
 
+import classes.Renter;
 import classes.Tenant;
 import classes.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringTokenizer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -67,15 +69,47 @@ public class TenantService extends AbstractFacade<Tenant>{
     }
     
     @POST
-    @Path("")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createRoom(Tenant entity) {
+    public Response createTenant(Tenant entity) {
         if(entity==null || entity.getId()==null) return Response.status(400).build();
         else if(super.find(entity.getId())!=null) {
             return Response.status(403).build();
         }else{
             super.create(entity);
             return Response.status(202).build();
+        }
+    }
+    
+    @POST
+    @Path("{id}/rent")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createRelation(Room room, @PathParam("id") Integer id) {
+        Tenant tenant = find(id);
+        Renter renter = new Renter();
+        if(room!=null){
+            renter = room.getRenter();
+        }
+        else return Response.status(404).entity("Room not found").build();
+        
+        if(tenant!=null){
+            if(renter!=null){
+                if(tenant.getPet()==renter.getPet()){
+                    if(tenant.getSmoker()==renter.getSmoker()){
+                        if(renter.getAgemin()<=tenant.getAge() && tenant.getAge()<=renter.getAgemax()){
+                          if(renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())){
+                                room.setTenant(tenant);
+                                super.edit(tenant);
+                                return Response.ok(renter, MediaType.APPLICATION_JSON).build();   
+                            }
+                        }
+                    }
+                }
+                return Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
+            }else{
+                return Response.status(404).entity("Renter not found").build();
+            }
+        }else{
+            return Response.status(404).entity("Tenant not found").build();
         }
     }
     
@@ -88,7 +122,7 @@ public class TenantService extends AbstractFacade<Tenant>{
             super.edit(entity);
             return Response.status(202).build();
         }else{
-            this.createRoom(entity);
+            this.createTenant(entity);
             return Response.status(201).build();
         }
     }

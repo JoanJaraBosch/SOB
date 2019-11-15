@@ -27,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Tenant.findAll", query = "SELECT c FROM Tenant c"),
     @NamedQuery(name = "Tenant.findById", query = "SELECT c FROM Tenant c WHERE c.id = :id"),
-    @NamedQuery(name = "Tenant.findByUsername", query = "SELECT c FROM Tenant c WHERE c.username = :username"),
     @NamedQuery(name = "Tenant.findByName", query = "SELECT c FROM Tenant c WHERE c.name = :name"),
     @NamedQuery(name = "Tenant.findBySurname", query = "SELECT c FROM Tenant c WHERE c.surname = :surname"),
     @NamedQuery(name = "Tenant.findByAge", query = "SELECT c FROM Tenant c WHERE c.age = :age"),
@@ -37,67 +36,43 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tenant.findBySex", query = "SELECT c FROM Tenant c WHERE c.sex = :sex")})
 public class Tenant implements Serializable{
     private static final long serialVersionUID = 1L;
-    @Size(max = 20)
-    @Column(name = "PASSWORD")
-    private String password = "";
-    @Size(max = 20)
-    @Column(name = "USERNAME")
-    private String username = "";
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private Integer id=0;
-     @Size(max = 20)
+    private Integer id;
+    @Size(max = 20)
     @Column(name = "NAME")
-    private String name="";
+    private String name;
     @Size(max = 20)
     @Column(name = "SURNAME")
-    private String surname="";
-    @Size(max = 20)
+    private String surname;
+    @Size(max = 100)
     @Column(name = "EMAIL")
-    private String email="";
+    private String email;
     @Column(name = "PET")
-    private Boolean pet = false;
+    private Boolean pet;
     @Column(name = "SMOKER")
-    private Boolean smoker = false;
+    private Boolean smoker;
     @Size(max = 20)
     @Column(name = "SEX")
-    private String sex ="";
+    private String sex;
     @Column(name = "AGE")
-    private Integer age = 0;
+    private Integer age;
 
     public Tenant(){
         
     }
-    
-    public Tenant(Integer id, String username, String password, String name, String surname, String email, Boolean pet, Boolean smoker, Integer age, String sex) {
-        this.id=id;
-        this.username=username;
-        this.password=password;
-        this.name=name;
+
+    public Tenant(Integer id, String name, String surname, String email, Boolean pet, Boolean smoker, String sex, Integer age) {
+        this.id = id;
+        this.name = name;
         this.surname = surname;
-        this.email=email;
-        this.pet=pet;
-        this.smoker=smoker;
-        this.age=age;
-        this.sex=sex;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        this.email = email;
+        this.pet = pet;
+        this.smoker = smoker;
+        this.sex = sex;
+        this.age = age;
     }
 
     public Integer getId() {
