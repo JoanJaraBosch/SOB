@@ -98,7 +98,7 @@ public class TenantService extends AbstractFacade<Tenant>{
                         if(renter.getAgemin()<=tenant.getAge() && tenant.getAge()<=renter.getAgemax()){
                           if(renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())){
                                 room.setTenant(tenant);
-                                super.edit(tenant);
+                                getEntityManager().merge(room);
                                 return Response.ok(renter, MediaType.APPLICATION_JSON).build();   
                             }
                         }
