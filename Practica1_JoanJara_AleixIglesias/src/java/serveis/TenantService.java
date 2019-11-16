@@ -96,16 +96,10 @@ public class TenantService extends AbstractFacade<Tenant>{
         
         if(tenant!=null){
             if(renter!=null){
-                if(tenant.getPet()==renter.getPet()){
-                    if(tenant.getSmoker()==renter.getSmoker()){
-                        if(renter.getAgemin()<=tenant.getAge() && tenant.getAge()<=renter.getAgemax()){
-                          if(renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())){
-                                room.setTenant(tenant);
-                                getEntityManager().merge(room);
-                                return Response.ok(renter, MediaType.APPLICATION_JSON).build();   
-                            }
-                        }
-                    }
+                if(compleixRequeriments(tenant, renter)){
+                    room.setTenant(tenant);
+                    getEntityManager().merge(room);
+                    return Response.ok(renter, MediaType.APPLICATION_JSON).build();
                 }
                 return Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
             }else{
@@ -134,11 +128,39 @@ public class TenantService extends AbstractFacade<Tenant>{
     @DELETE
     @Secured
     @Path("{id}")
-    public Response deleteRoomById(@PathParam("id") int id) {
-        super.remove(super.find(id));
-        return Response.ok().build();
+    public Response deleteTenantById(@PathParam("id") int id) {
+        Tenant tenant = super.find(id);
+        if(tenant!=null){
+            tenantVinculat(tenant);
+            return Response.ok().build();
+        }else{
+            return Response.status(404).entity("Tenant not found to be eliminated").build();
+        }
     }
 
+    public void tenantVinculat(Tenant tenant){
+        //desvincular si te una habitacio llogada, sino en te cap no pasa res
+        super.remove(tenant);
+    }
+    
+    public boolean compleixRequeriments(Tenant tenant, Renter renter){
+        Boolean retorna = false;
+        try{
+            if(tenant.getPet()==renter.getPet()){
+                if(tenant.getSmoker()==renter.getSmoker()){
+                    if(renter.getAgemin()<=tenant.getAge() && tenant.getAge()<=renter.getAgemax()){
+                        if(renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())){
+                           retorna=true;   
+                        }
+                    }
+                }
+            }
+        }catch(java.lang.NullPointerException e){
+            
+        }
+        return retorna;
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

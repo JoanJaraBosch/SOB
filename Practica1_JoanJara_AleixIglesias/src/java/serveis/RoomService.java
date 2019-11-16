@@ -121,8 +121,13 @@ public class RoomService extends AbstractFacade<Room>{
     @DELETE
     @Path("{id}")
     public Response deleteRoomById(@PathParam("id") int id) {
-        super.remove(super.find(id));
-        return Response.ok().build();
+        Room room = super.find(id);
+        if(room!=null){
+            super.remove(room);
+            return Response.ok().build();
+        }else{
+            return Response.status(404).entity("Room not found to be eliminated").build();
+        }
     }
 
     @Override
