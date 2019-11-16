@@ -8,6 +8,7 @@ package serveis;
 import classes.Renter;
 import classes.Tenant;
 import classes.Room;
+import classes.Secured;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,6 +44,7 @@ public class TenantService extends AbstractFacade<Tenant>{
     }
     
     @GET
+    @Secured
     @Path("{id}")
     public Response findById(@PathParam("id") Integer id) {
         if(super.find(id)==null) return Response.status(404).build();
@@ -81,6 +83,7 @@ public class TenantService extends AbstractFacade<Tenant>{
     }
     
     @POST
+    @Secured
     @Path("{id}/rent")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createRelation(Room room, @PathParam("id") Integer id) {
@@ -114,6 +117,7 @@ public class TenantService extends AbstractFacade<Tenant>{
     }
     
     @PUT
+    @Secured
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Tenant entity) {
@@ -128,6 +132,7 @@ public class TenantService extends AbstractFacade<Tenant>{
     }
     
     @DELETE
+    @Secured
     @Path("{id}")
     public Response deleteRoomById(@PathParam("id") int id) {
         super.remove(super.find(id));

@@ -6,6 +6,7 @@
 package serveis;
 
 import classes.Room;
+import classes.Secured;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
