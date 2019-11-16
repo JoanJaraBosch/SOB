@@ -9,10 +9,7 @@ import classes.Renter;
 import classes.Tenant;
 import classes.Room;
 import classes.Secured;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.StringTokenizer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,14 +20,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * Classe per a fer la rest api del tenant
  * @author Joan Jara
  */
 @Stateless
@@ -39,10 +34,18 @@ public class TenantService extends AbstractFacade<Tenant>{
     @PersistenceContext(unitName = "sob_grup_04")
     private EntityManager em;
 
+    /**
+     *
+     */
     public TenantService() {
         super(Tenant.class);
     }
     
+    /**
+     * Metode get per retornar un tenant. Te el tag Secured perque passara per un filtre perque requereix authenticacio
+     * @param id
+     * @return retorna 200 si tot ha anat be i 404 si no troba el tenant
+     */
     @GET
     @Secured
     @Path("{id}")
@@ -51,25 +54,25 @@ public class TenantService extends AbstractFacade<Tenant>{
         return Response.ok(super.find(id), MediaType.APPLICATION_JSON).build();
     }
     
+    
+      /**
+     * Metode get per retornar tots els tenants
+     * @return retorna 200
+     */
     @GET
     public Response find() {
         List<Tenant> tenants = super.findAll();
-        String json = "{";
-        Boolean primer=true;
-        for(Tenant t: tenants){
-            if(primer){
-                json+=" Tenant: "+t.getName()+" "+t.getSurname();
-                primer=false;
-            }
-            else{
-                 json+=", Tenant: "+t.getName()+" "+t.getSurname();
-            }
-        }
-        json+="}";
+        
         if(tenants==null) return Response.status(404).build();
-        return Response.ok(json,MediaType.APPLICATION_JSON).build();
+        GenericEntity<List<Tenant>> entity = new GenericEntity<List<Tenant>>(tenants) {};
+        return Response.ok(entity,MediaType.APPLICATION_JSON).build();
     }
     
+    /**
+     * Metode post per a crear un tenant
+     * @param entity
+     * @return retorna 400 si falta algun parametre, 403 si ja esta creat i 201 si no esta creat i el crea
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createTenant(Tenant entity) {
@@ -78,10 +81,16 @@ public class TenantService extends AbstractFacade<Tenant>{
             return Response.status(403).build();
         }else{
             super.create(entity);
-            return Response.status(202).build();
+            return Response.status(201).build();
         }
     }
     
+    /**
+     * Metode post per a demanar les dades del renter per a alquilar una habitació. Metode marcat amb el tag secured perque necessita autenticacio
+     * @param room
+     * @param id
+     * @return Retorna 404 si falta alguna classe, 403 si no compleix algun requeriment i 20o si tot ha anat be
+     */
     @POST
     @Secured
     @Path("{id}/rent")
@@ -110,6 +119,12 @@ public class TenantService extends AbstractFacade<Tenant>{
         }
     }
     
+    /**
+     * Metode per actualitzar un tenant. Esta marcat amb el tag secured perque necessites autenticacio
+     * @param id
+     * @param entity
+     * @return retorna 400 si falta alguna dada, 202 si edita la entitat i 201 si la crea i 202 si lactualitza
+     */
     @PUT
     @Secured
     @Path("{id}")
@@ -120,11 +135,16 @@ public class TenantService extends AbstractFacade<Tenant>{
             super.edit(entity);
             return Response.status(202).build();
         }else{
-            this.createTenant(entity);
+            super.create(entity);
             return Response.status(201).build();
         }
     }
     
+    /**
+     * Metode delete de la calsse tenant que necessita autenticacio
+     * @param id
+     * @return retorna 200 si tot ha anat be o 404 si no troba la classe
+     */
     @DELETE
     @Secured
     @Path("{id}")
@@ -138,29 +158,50 @@ public class TenantService extends AbstractFacade<Tenant>{
         }
     }
 
+    /**
+     * Metode que serveix per a eliminar un tenat i mira si esta vinculat o no amb una habitacio
+     * @param tenant
+     */
     public void tenantVinculat(Tenant tenant){
         //desvincular si te una habitacio llogada, sino en te cap no pasa res
+        List<Room> rooms = (List<Room>) getEntityManager().createNamedQuery("Room.findAll").getResultList();
+        for(Room r : rooms){
+            if(r.getTenant() !=null && r.getTenant().equals(tenant)){
+                r.setTenant(null);
+                break;
+            }
+        }
         super.remove(tenant);
     }
     
-    public boolean compleixRequeriments(Tenant tenant, Renter renter){
+    /**
+     * Metode per a retornar si compleix o no amb els requeriments del renter
+     * @param tenant
+     * @param renter
+     * @return retorna true si els cokpleix i fals si no els compleix
+     */
+    public boolean compleixRequeriments(Tenant tenant, Renter renter) {
         Boolean retorna = false;
-        try{
-            if(tenant.getPet()==renter.getPet()){
-                if(tenant.getSmoker()==renter.getSmoker()){
-                    if(renter.getAgemin()<=tenant.getAge() && tenant.getAge()<=renter.getAgemax()){
-                        if(renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())){
-                           retorna=true;   
+        try {
+            if (tenant.getPet() == renter.getPet()) {
+                if (tenant.getSmoker() == renter.getSmoker()) {
+                    if (renter.getAgemin() <= tenant.getAge() && tenant.getAge() <= renter.getAgemax()) {
+                        if (renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())) {
+                            retorna = true;
                         }
                     }
                 }
             }
-        }catch(java.lang.NullPointerException e){
-            
+        } catch (java.lang.NullPointerException e) {
+
         }
         return retorna;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;

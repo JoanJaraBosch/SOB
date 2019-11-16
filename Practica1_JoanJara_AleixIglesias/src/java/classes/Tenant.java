@@ -60,10 +60,24 @@ public class Tenant implements Serializable{
     @Column(name = "AGE")
     private Integer age;
 
+    /**
+     *
+     */
     public Tenant(){
         
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param surname
+     * @param email
+     * @param pet
+     * @param smoker
+     * @param sex
+     * @param age
+     */
     public Tenant(Integer id, String name, String surname, String email, Boolean pet, Boolean smoker, String sex, Integer age) {
         this.id = id;
         this.name = name;
@@ -75,66 +89,130 @@ public class Tenant implements Serializable{
         this.age = age;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * @param surname
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getPet() {
         return pet;
     }
 
+    /**
+     *
+     * @param pet
+     */
     public void setPet(Boolean pet) {
         this.pet = pet;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getSmoker() {
         return smoker;
     }
 
+    /**
+     *
+     * @param smoker
+     */
     public void setSmoker(Boolean smoker) {
         this.smoker = smoker;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSex() {
         return sex;
     }
 
+    /**
+     *
+     * @param sex
+     */
     public void setSex(String sex) {
         this.sex = sex;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAge() {
         return age;
     }
 
+    /**
+     *
+     * @param age
+     */
     public void setAge(int age) {
         this.age = age;
     }

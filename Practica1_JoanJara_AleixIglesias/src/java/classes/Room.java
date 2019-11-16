@@ -73,6 +73,21 @@ public class Room implements Serializable, Comparable<Room>{
     @JoinColumn(name = "TENANT_ID")
     private Tenant tenant;
     
+    /**
+     *
+     * @param id
+     * @param zip
+     * @param adreça
+     * @param description
+     * @param city
+     * @param price
+     * @param simple
+     * @param indoor
+     * @param furnished
+     * @param smoker
+     * @param age
+     * @param pet
+     */
     public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
         this.roomID=id;
         this.description=description;
@@ -85,90 +100,175 @@ public class Room implements Serializable, Comparable<Room>{
         this.zip=zip;
     }
     
+    /**
+     *
+     */
     public Room()
     {
         
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getRoomID() {
         return roomID;
     }
 
+    /**
+     *
+     * @param roomID
+     */
     public void setRoomID(Integer roomID) {
         this.roomID = roomID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     public Float getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(Float price) {
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getSimple() {
         return simple;
     }
 
+    /**
+     *
+     * @param simple
+     */
     public void setSimple(Boolean simple) {
         this.simple = simple;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIndoor() {
         return indoor;
     }
 
+    /**
+     *
+     * @param indoor
+     */
     public void setIndoor(Boolean indoor) {
         this.indoor = indoor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getFurnished() {
         return furnished;
     }
 
+    /**
+     *
+     * @param furnished
+     */
     public void setFurnished(Boolean furnished) {
         this.furnished = furnished;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getZip() {
         return zip;
     }
 
+    /**
+     *
+     * @param zip
+     */
     public void setZip(Integer zip) {
         this.zip = zip;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdreça() {
         return adreça;
     }
 
+    /**
+     *
+     * @param adreça
+     */
     public void setAdreça(String adreça) {
         this.adreça = adreça;
     }
 
-    
-
+    /**
+     *
+     * @param t
+     * @return
+     */
     public int compareTo(Room t) {
         return Comparators.PRICECOMP.compare(this, t);
     }
     
-     public static class Comparators {
+    /**
+     *
+     */
+    public static class Comparators {
+
+        /**
+         *
+         */
         public static Comparator<Room> PRICECOMP = new Comparator<Room>() {
             @Override
             public int compare(Room t, Room t1) {
@@ -183,27 +283,52 @@ public class Room implements Serializable, Comparable<Room>{
            };
      }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Room{" + "roomID=" + roomID + ", zip=" + zip + ", description=" + description + ", adre\u00e7a=" + adreça + ", city=" + city + ", price=" + price + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     public Renter getRenter() {
         return renter;
     }
 
+    /**
+     *
+     * @param renter
+     */
     public void setRenter(Renter renter) {
         this.renter = renter;
     }
 
+    /**
+     *
+     * @return
+     */
     public Tenant getTenant() {
         return tenant;
     }
 
+    /**
+     *
+     * @param tenant
+     */
     public void setTenant(Tenant tenant) {
         this.tenant = tenant;
     }
     
+    /**
+     *
+     * @param rooms
+     * @return
+     */
     public Integer maxID(List<Room> rooms){
         Integer id=0;
         for(Room a:rooms){

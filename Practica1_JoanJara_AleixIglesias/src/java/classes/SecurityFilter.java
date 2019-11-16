@@ -40,6 +40,11 @@ public class SecurityFilter implements ContainerRequestFilter {
     @Context
     private ResourceInfo resourceInfo;
     
+    /**
+     *
+     * @param requestContext
+     * @throws IOException
+     */
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         Method method = resourceInfo.getResourceMethod();

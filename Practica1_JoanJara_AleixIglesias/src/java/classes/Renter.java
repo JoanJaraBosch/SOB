@@ -75,10 +75,27 @@ public class Renter implements Serializable{
     @Column(name = "PET")
     private Boolean pet;
    
-
+    /**
+     *
+     */
     public Renter() {
     }
 
+    /**
+     *
+     * @param id
+     * @param zip
+     * @param email
+     * @param sex
+     * @param name
+     * @param surname
+     * @param adreça
+     * @param city
+     * @param agemax
+     * @param agemin
+     * @param smoker
+     * @param pet
+     */
     public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adreça, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet) {
         this.id = id;
         this.zip = zip;
@@ -94,98 +111,194 @@ public class Renter implements Serializable{
         this.pet = pet;
     }
     
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getZip() {
         return zip;
     }
 
+    /**
+     *
+     * @param zip
+     */
     public void setZip(Integer zip) {
         this.zip = zip;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdreça() {
         return adreça;
     }
 
+    /**
+     *
+     * @param adreça
+     */
     public void setAdreça(String adreça) {
         this.adreça = adreça;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAgemax() {
         return agemax;
     }
 
+    /**
+     *
+     * @param agemax
+     */
     public void setAgemax(Integer agemax) {
         this.agemax = agemax;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAgemin() {
         return agemin;
     }
 
+    /**
+     *
+     * @param agemin
+     */
     public void setAgemin(Integer agemin) {
         this.agemin = agemin;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getSmoker() {
         return smoker;
     }
 
+    /**
+     *
+     * @param smoker
+     */
     public void setSmoker(Boolean smoker) {
         this.smoker = smoker;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getPet() {
         return pet;
     }
 
+    /**
+     *
+     * @param pet
+     */
     public void setPet(Boolean pet) {
         this.pet = pet;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * @param surname
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSex() {
         return sex;
     }
 
+    /**
+     *
+     * @param sex
+     */
     public void setSex(String sex) {
         this.sex = sex;
     }
