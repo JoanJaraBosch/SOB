@@ -1,0 +1,1392 @@
+{
+	"info": {
+		"_postman_id": "fbe2d556-e370-4eb4-a7e0-4ae07e16fd3c",
+		"name": "Test_pràctica1_sob_JoanJara_i_AleixIglesias",
+		"description": "És una colecció de proves per a fer testos per a la pràctica 1 de SOB. Aquí porvarem el GET, PUT POST... de les habitacions i els tenants.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "agafar_get_habitacio_erroni",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "27a6900c-7da4-4012-b92d-32e9179b2a50",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"6"
+							]
+						},
+						"description": "Un get amb un recurs no disponible"
+					},
+					"response": []
+				},
+				{
+					"name": "agafar_get_habitacio_correcte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"3"
+							]
+						},
+						"description": "Exemple dun get correcte"
+					},
+					"response": []
+				},
+				{
+					"name": "agafar_get_criterion_falta_sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agafar_get_criterion_sort_sense valor_o_valor_errorni",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room?sort=aux",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "aux"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agafar_get_criterion_sort_amb_valor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room?sort=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agafar_get_criterion_sort_ciutat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room?sort=desc&location=reus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								},
+								{
+									"key": "location",
+									"value": "reus"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_habitacio_no_existent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_habitacio_existent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_habitacio_no_existent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer dels morts\",\r\n        \"agemax\": 50,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_habitacio_existent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer de la vida\",\r\n        \"agemax\": 100,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_parametres_mal_formats",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_habitacio_existent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer de la vida\",\r\n        \"agemax\": 100,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_habitacio_no_existent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer de la vida\",\r\n        \"agemax\": 100,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 5,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_no_dades",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"room"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Proves per a la api rest dels metodes de la habitacio",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "get_tenants_llista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_tenant_id_autenticat",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_tenant_id_no_autenticat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_tenant_id_autenticat_no_existeix",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_tenant_autenticat_no_exist",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_autenticat",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_no_autenticat",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_no_existent_autenticat",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 34,\r\n    \"email\": \"albert@gmail.com\",\r\n    \"id\": 5,\r\n    \"name\": \"albert\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": true,\r\n    \"surname\": \"munte\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_autenticat_existent",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"sob@gmail.com\",\r\n    \"id\": 1,\r\n    \"name\": \"sob\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"sob\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_autenticat_no_autenticat",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"sob@gmail.com\",\r\n    \"id\": 1,\r\n    \"name\": \"sob\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"sob\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_autenticat_bad_parameters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_afegirTenant_mal_format",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_afegirTenant_existent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"joan.jara@gmail.com\",\r\n    \"id\": 2,\r\n    \"name\": \"Joan\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"Jara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_afegirTenant_no_existent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"joan.jara@gmail.com\",\r\n    \"id\": 6,\r\n    \"name\": \"Joan\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"Jara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_no_autenticat_llogar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/5/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"5",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_notenant",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roomID\": 7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/5/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"5",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_no_renter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"3",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_compleix_requeriments",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 3,\r\n    \"adreça\": \"\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer dels morts\",\r\n        \"agemax\": 50,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"3",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_no_compleix",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 3,\r\n    \"adreça\": \"Avinguda de dubai falsa\",\r\n    \"city\": \"Dubai\",\r\n    \"description\": \"Habitacio en un gratacels de dubai on es veu la posta de sol\",\r\n    \"furnished\": false,\r\n    \"indoor\": false,\r\n    \"price\": 1000.66,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer pedrastela\",\r\n        \"agemax\": 80,\r\n        \"agemin\": 18,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals2@gmail.com\",\r\n        \"id\": 3,\r\n        \"name\": \"Luigi\",\r\n        \"pet\": true,\r\n        \"sex\": \"home\",\r\n        \"smoker\": false,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 43209\r\n    },\r\n    \"roomID\": 3,\r\n    \"simple\": false,\r\n    \"zip\": 90205\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"3",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_already_in_use",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 5,\r\n    \"adreça\": \"\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer dels morts\",\r\n        \"agemax\": 50,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"tenant\": {\r\n        \"age\": 50,\r\n        \"email\": \"maricarmen@gmail.com\",\r\n        \"id\": 3,\r\n        \"name\": \"Aleix\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Iglesias\"\r\n    },\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/5/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"5",
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post_autenticat_llogar_mal_format",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "sob",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "sob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "3",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adreça\": \"\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer dels morts\",\r\n        \"agemax\": 50,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 2,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Practica1_JoanJara_AleixIglesias",
+								"rest",
+								"api",
+								"v1",
+								"tenant",
+								"3",
+								"rent"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

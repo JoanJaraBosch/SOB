@@ -216,6 +216,11 @@ public class Tenant implements Serializable{
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Tenant{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", pet=" + pet + ", smoker=" + smoker + ", sex=" + sex + ", age=" + age + '}';
+    }
     
     
 }

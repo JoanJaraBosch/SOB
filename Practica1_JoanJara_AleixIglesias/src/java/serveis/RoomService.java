@@ -51,7 +51,7 @@ public class RoomService extends AbstractFacade<Room>{
     @GET
     @Path("{id}")
     public Response find(@PathParam("id") Integer id) {
-        if(super.find(id)==null) return Response.status(404).build();
+        if(super.find(id)==null) return Response.status(404).entity("Room not found.").build();
         return Response.ok(super.find(id), MediaType.APPLICATION_JSON).build();
     }
     
@@ -87,12 +87,12 @@ public class RoomService extends AbstractFacade<Room>{
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createRoom(Room entity) {
-        if(entity==null || entity.getRoomID()==null) return Response.status(400).build();
+        if(entity==null || entity.getRoomID()==null) return Response.status(400).entity("The request is bad formated.").build();
         else if(super.find(entity.getRoomID())!=null) {
-            return Response.status(403).build();
+            return Response.status(403).entity("The request can't be done because there is a room already created.").build();
         }else{
             super.create(entity);
-            return Response.status(201).build();
+            return Response.status(201).entity("The request was accepted and you created the room").build();
         }
     }
     
@@ -106,13 +106,13 @@ public class RoomService extends AbstractFacade<Room>{
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Room entity) {
-        if(entity==null || entity.getRoomID()==null) return Response.status(400).build();
+        if(entity==null || entity.getRoomID()==null) return Response.status(400).entity("There are invalid parameters. The sintax is not correct.").build();
         else if(super.find(entity.getRoomID())!=null) {
             super.edit(entity);
-            return Response.status(202).build();
+            return Response.status(202).entity("The request was accepted and you updated the room").build();
         }else{
             this.createRoom(entity);
-            return Response.status(201).build();
+            return Response.status(201).entity("The request was accepted and you created the room").build();
         }
     }
     
