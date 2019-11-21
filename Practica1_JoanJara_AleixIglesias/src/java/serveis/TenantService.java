@@ -20,6 +20,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,11 +48,12 @@ public class TenantService extends AbstractFacade<Tenant>{
      * @return retorna 200 si tot ha anat be i 404 si no troba el tenant
      */
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Secured
     @Path("{id}")
     public Response findById(@PathParam("id") Integer id) {
         if(super.find(id)==null) return Response.status(404).entity("The tenant doesn't exist.").build();
-        return Response.ok(super.find(id), MediaType.APPLICATION_JSON).build();
+        return Response.ok(super.find(id)).build();
     }
     
     
@@ -60,12 +62,13 @@ public class TenantService extends AbstractFacade<Tenant>{
      * @return retorna 200
      */
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response find() {
         List<Tenant> tenants = super.findAll();
         
         if(tenants==null) return Response.status(404).entity("There are no Tenants").build();
         GenericEntity<List<Tenant>> entity = new GenericEntity<List<Tenant>>(tenants) {};
-        return Response.ok(entity,MediaType.APPLICATION_JSON).build();
+        return Response.ok(entity).build();
     }
     
     /**
@@ -182,7 +185,7 @@ public class TenantService extends AbstractFacade<Tenant>{
                                      if (renter.getSex().equals("unisex") || tenant.getSex().equals(renter.getSex())) {
                                         room.setTenant(tenant);
                                         getEntityManager().merge(room);
-                                        response= Response.ok(renter, MediaType.APPLICATION_JSON).build();
+                                        response= Response.ok(renter).build();
                                      }else{
                                         response= Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
                                      }

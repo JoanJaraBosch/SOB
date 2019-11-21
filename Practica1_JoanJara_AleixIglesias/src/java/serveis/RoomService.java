@@ -50,9 +50,10 @@ public class RoomService extends AbstractFacade<Room>{
      */
     @GET
     @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") Integer id) {
         if(super.find(id)==null) return Response.status(404).entity("Room not found.").build();
-        return Response.ok(super.find(id), MediaType.APPLICATION_JSON).build();
+        return Response.ok(super.find(id)).build();
     }
     
     
@@ -177,6 +178,6 @@ public class RoomService extends AbstractFacade<Room>{
             return Response.status(422).entity("The query parameter sort has to be used.").build();
         }
         GenericEntity<List<Room>> entity = new GenericEntity<List<Room>>(aux) {};
-        return Response.ok(entity,MediaType.APPLICATION_JSON).build();
+        return Response.ok(entity).build();
     }
 }
