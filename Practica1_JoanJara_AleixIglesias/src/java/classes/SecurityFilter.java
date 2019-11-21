@@ -65,7 +65,9 @@ public class SecurityFilter implements ContainerRequestFilter {
                         return;
                     }
                 }
-                Response unauthorized = Response.status(401).entity("User cannot access because don't have the suficient rigths.").build();
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("401");
+                Response unauthorized = Response.status(401).entity(r).build();
                 requestContext.abortWith(unauthorized);
             }
         }

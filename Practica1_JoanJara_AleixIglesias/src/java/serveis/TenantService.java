@@ -6,6 +6,7 @@
 package serveis;
 
 import classes.Renter;
+import classes.ResponseHandler;
 import classes.Tenant;
 import classes.Room;
 import classes.Secured;
@@ -52,7 +53,11 @@ public class TenantService extends AbstractFacade<Tenant>{
     @Secured
     @Path("{id}")
     public Response findById(@PathParam("id") Integer id) {
-        if(super.find(id)==null) return Response.status(404).entity("The tenant doesn't exist.").build();
+        if(super.find(id)==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(404).entity(r).build();
+        }
         return Response.ok(super.find(id)).build();
     }
     
@@ -66,7 +71,11 @@ public class TenantService extends AbstractFacade<Tenant>{
     public Response find() {
         List<Tenant> tenants = super.findAll();
         
-        if(tenants==null) return Response.status(404).entity("There are no Tenants").build();
+        if(tenants==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(404).entity(r).build();
+        }
         GenericEntity<List<Tenant>> entity = new GenericEntity<List<Tenant>>(tenants) {};
         return Response.ok(entity).build();
     }
@@ -79,12 +88,20 @@ public class TenantService extends AbstractFacade<Tenant>{
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createTenant(Tenant entity) {
-        if(entity==null || entity.getId()==null) return Response.status(400).entity("The parameters are not well formated.").build();
+        if(entity==null || entity.getId()==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("400");
+            return Response.status(400).entity(r).build();
+        }
         else if(super.find(entity.getId())!=null) {
-            return Response.status(403).entity("Tenant already created.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("403");
+            return Response.status(403).entity(r).build();
         }else{
             super.create(entity);
-            return Response.status(201).entity("You created a tenant.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("201");
+            return Response.status(201).entity(r).build();
         }
     }
     
@@ -115,13 +132,21 @@ public class TenantService extends AbstractFacade<Tenant>{
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Tenant entity) {
-        if(entity==null || entity.getId()==null) return Response.status(400).entity("The parameters are not well formed.").build();
+        if(entity==null || entity.getId()==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("400");
+            return Response.status(400).entity(r).build();
+        }
         else if(super.find(entity.getId())!=null) {
             super.edit(entity);
-            return Response.status(202).entity("Tenant updated correctly.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("202");
+            return Response.status(202).entity(r).build();
         }else{
             super.create(entity);
-            return Response.status(201).entity("Tenant created correctly.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("201");
+            return Response.status(201).entity(r).build();
         }
     }
     
@@ -139,7 +164,9 @@ public class TenantService extends AbstractFacade<Tenant>{
             tenantVinculat(tenant);
             return Response.ok().build();
         }else{
-            return Response.status(404).entity("Tenant not found to be eliminated").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(404).entity(r).build();
         }
     }
 
@@ -174,7 +201,11 @@ public class TenantService extends AbstractFacade<Tenant>{
                 renter = room.getRenter();
                 exist = room.getTenant();
             }
-            else response= Response.status(404).entity("Room not found").build();
+            else{
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("404");
+                response= Response.status(404).entity(r).build();
+            }
             
             if(exist==null){
                 if(tenant!=null){
@@ -187,28 +218,44 @@ public class TenantService extends AbstractFacade<Tenant>{
                                         getEntityManager().merge(room);
                                         response= Response.ok(renter).build();
                                      }else{
-                                        response= Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
+                                         ResponseHandler r = new ResponseHandler();
+                                         r.setResponse("403");
+                                        response= Response.status(403).entity(r).build();
                                      }
                                  }else{
-                                    response= Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
+                                     ResponseHandler r = new ResponseHandler();
+                                     r.setResponse("403");
+                                    response= Response.status(403).entity(r).build();
                                  }
                              }else{
-                                 response= Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
+                                ResponseHandler r = new ResponseHandler();
+                                r.setResponse("403");
+                                 response= Response.status(403).entity(r).build();
                              }
                         }else{
-                            response= Response.status(403).entity("The tenant didn't accomplish one or more rules of the renter.").build();
+                            ResponseHandler r = new ResponseHandler();
+                            r.setResponse("403");
+                            response= Response.status(403).entity(r).build();
                         }
                     }else{
-                        response= Response.status(404).entity("Renter not found").build();
+                        ResponseHandler r = new ResponseHandler();
+                        r.setResponse("404");
+                        response= Response.status(404).entity(r).build();
                     }
                 }else{
-                    response= Response.status(404).entity("Tenant not found").build();
+                    ResponseHandler r = new ResponseHandler();
+                    r.setResponse("404");
+                    response= Response.status(404).entity(r).build();
                 }
             }else{
-                response=Response.status(403).entity("Sorry, this room is already in use.").build();
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("404");
+                 response=Response.status(403).entity(r).build();
             }
         } catch (java.lang.NullPointerException e) {
-            response=Response.status(400).entity("The json send is a bad request because one paramater or more is not defined correctly.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("400");
+            response=Response.status(400).entity(r).build();
         }
         return response;
     }

@@ -5,6 +5,7 @@
  */
 package serveis;
 
+import classes.ResponseHandler;
 import classes.Room;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,7 +53,11 @@ public class RoomService extends AbstractFacade<Room>{
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") Integer id) {
-        if(super.find(id)==null) return Response.status(404).entity("Room not found.").build();
+        if(super.find(id)==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(404).entity(r).build();
+        }
         return Response.ok(super.find(id)).build();
     }
     
@@ -88,12 +93,20 @@ public class RoomService extends AbstractFacade<Room>{
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createRoom(Room entity) {
-        if(entity==null || entity.getRoomID()==null) return Response.status(400).entity("The request is bad formated.").build();
+        if(entity==null || entity.getRoomID()==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("400");
+            return Response.status(400).entity(r).build();
+        }
         else if(super.find(entity.getRoomID())!=null) {
-            return Response.status(403).entity("The request can't be done because there is a room already created.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("403");
+            return Response.status(403).entity(r).build();
         }else{
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("201");
             super.create(entity);
-            return Response.status(201).entity("The request was accepted and you created the room").build();
+            return Response.status(201).entity(r).build();
         }
     }
     
@@ -107,13 +120,21 @@ public class RoomService extends AbstractFacade<Room>{
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Room entity) {
-        if(entity==null || entity.getRoomID()==null) return Response.status(400).entity("There are invalid parameters. The sintax is not correct.").build();
+        if(entity==null || entity.getRoomID()==null){
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(400).entity(r).build();
+        }
         else if(super.find(entity.getRoomID())!=null) {
             super.edit(entity);
-            return Response.status(202).entity("The request was accepted and you updated the room").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("20");
+            return Response.status(202).entity(r).build();
         }else{
             this.createRoom(entity);
-            return Response.status(201).entity("The request was accepted and you created the room").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("201");
+            return Response.status(201).entity(r).build();
         }
     }
     
@@ -130,7 +151,9 @@ public class RoomService extends AbstractFacade<Room>{
             super.remove(room);
             return Response.ok().build();
         }else{
-            return Response.status(404).entity("Room not found to be eliminated").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("404");
+            return Response.status(404).entity(r).build();
         }
     }
 
@@ -172,10 +195,14 @@ public class RoomService extends AbstractFacade<Room>{
             }
             else
             {
-                return Response.status(422).entity("You have to equal de sort parameter to asc or desc to search ascendent or descendent prices.").build();
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("422");
+                return Response.status(422).entity(r).build();
             }
         }catch(java.lang.NullPointerException e){
-            return Response.status(422).entity("The query parameter sort has to be used.").build();
+            ResponseHandler r = new ResponseHandler();
+            r.setResponse("422");
+            return Response.status(422).entity(r).build();
         }
         GenericEntity<List<Room>> entity = new GenericEntity<List<Room>>(aux) {};
         return Response.ok(entity).build();
