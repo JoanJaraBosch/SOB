@@ -87,21 +87,27 @@ public class TenantService extends AbstractFacade<Tenant>{
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createTenant(Tenant entity) {
-        if(entity==null || entity.getId()==null){
+        if(entity==null){
             ResponseHandler r = new ResponseHandler();
             r.setResponse("400");
             return Response.status(400).entity(r).build();
         }
-        else if(super.find(entity.getId())!=null) {
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("403");
-            return Response.status(403).entity(r).build();
+        else if(entity.getId()!=null){ 
+            if(super.find(entity.getId())!=null) {
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("403");
+                return Response.status(403).entity(r).build();
+            }else{
+                entity.setId(entity.maxID(super.findAll())+1);
+                super.create(entity);
+                return Response.status(201).entity(entity).build();
+            }
         }else{
+            entity.setId(entity.maxID(super.findAll())+1);
             super.create(entity);
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("201");
-            return Response.status(201).entity(r).build();
+            return Response.status(201).entity(entity).build();
         }
     }
     
@@ -115,6 +121,7 @@ public class TenantService extends AbstractFacade<Tenant>{
     @Secured
     @Path("{id}/rent")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createRelation(Room room, @PathParam("id") Integer id) {
         Tenant tenant = find(id);
         Renter renter = new Renter();
@@ -131,22 +138,19 @@ public class TenantService extends AbstractFacade<Tenant>{
     @Secured
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Tenant entity) {
-        if(entity==null || entity.getId()==null){
+        if(entity==null || id==null){
             ResponseHandler r = new ResponseHandler();
             r.setResponse("400");
             return Response.status(400).entity(r).build();
         }
-        else if(super.find(entity.getId())!=null) {
+        else if(super.find(id)!=null) {
             super.edit(entity);
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("202");
-            return Response.status(202).entity(r).build();
+            return Response.status(202).entity(entity).build();
         }else{
             super.create(entity);
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("201");
-            return Response.status(201).entity(r).build();
+            return Response.status(201).entity(entity).build();
         }
     }
     

@@ -6,6 +6,7 @@
 package classes;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -217,6 +218,19 @@ public class Tenant implements Serializable{
         this.age = age;
     }
 
+    /**
+     *
+     * @param rooms
+     * @return
+     */
+    public Integer maxID(List<Tenant> tenants){
+        Integer id=0;
+        for(Tenant a:tenants){
+            if(a.getId()>id) id = a.getId();
+        }
+        return id;
+    }
+    
     @Override
     public String toString() {
         return "Tenant{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", pet=" + pet + ", smoker=" + smoker + ", sex=" + sex + ", age=" + age + '}';

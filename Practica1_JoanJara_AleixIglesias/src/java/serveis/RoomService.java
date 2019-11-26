@@ -92,21 +92,27 @@ public class RoomService extends AbstractFacade<Room>{
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createRoom(Room entity) {
-        if(entity==null || entity.getRoomID()==null){
+        if(entity.getZip()==null){
             ResponseHandler r = new ResponseHandler();
             r.setResponse("400");
             return Response.status(400).entity(r).build();
         }
-        else if(super.find(entity.getRoomID())!=null) {
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("403");
-            return Response.status(403).entity(r).build();
-        }else{
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("201");
+        else if( entity.getRoomID()!=null) {
+            if(super.find(entity.getRoomID())!=null){
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("403");
+                return Response.status(403).entity(r).build();
+            }else{
+                entity.setRoomID(entity.maxID(super.findAll())+1);
+                super.create(entity);
+                return Response.status(201).entity(entity).build();
+            }
+         }else{
+            entity.setRoomID(entity.maxID(super.findAll())+1);
             super.create(entity);
-            return Response.status(201).entity(r).build();
+            return Response.status(201).entity(entity).build();
         }
     }
     
@@ -119,22 +125,19 @@ public class RoomService extends AbstractFacade<Room>{
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response edit(@PathParam("id") Integer id, Room entity) {
-        if(entity==null || entity.getRoomID()==null){
+        if(entity.getZip()==null || id==null){
             ResponseHandler r = new ResponseHandler();
             r.setResponse("404");
             return Response.status(400).entity(r).build();
         }
-        else if(super.find(entity.getRoomID())!=null) {
+        else if(super.find(id) !=null) {
             super.edit(entity);
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("20");
-            return Response.status(202).entity(r).build();
+            return Response.status(202).entity(entity).build();
         }else{
-            this.createRoom(entity);
-            ResponseHandler r = new ResponseHandler();
-            r.setResponse("201");
-            return Response.status(201).entity(r).build();
+            super.create(entity);
+            return Response.status(201).entity(entity).build();
         }
     }
     

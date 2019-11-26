@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fbe2d556-e370-4eb4-a7e0-4ae07e16fd3c",
+		"_postman_id": "5abfeb92-600c-4a97-84b1-8bc7841b9f4d",
 		"name": "Test_pràctica1_sob_JoanJara_i_AleixIglesias",
 		"description": "És una colecció de proves per a fer testos per a la pràctica 1 de SOB. Aquí porvarem el GET, PUT POST... de les habitacions i els tenants.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -406,7 +406,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer de la vida\",\r\n        \"agemax\": 100,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"roomID\": 5,\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
+							"raw": "{\r\n    \"adreça\": \"Carrer ripoll a les afores de Reus\",\r\n    \"city\": \"Reus\",\r\n    \"description\": \"Habitacio ambientada en del estil japones.\",\r\n    \"furnished\": true,\r\n    \"indoor\": false,\r\n    \"price\": 400.0,\r\n    \"renter\": {\r\n        \"adreça\": \"Carrer de la vida\",\r\n        \"agemax\": 100,\r\n        \"agemin\": 23,\r\n        \"city\": \"Reus\",\r\n        \"email\": \"fals1@gmail.com\",\r\n        \"id\": 2,\r\n        \"name\": \"Mario\",\r\n        \"pet\": false,\r\n        \"sex\": \"dona\",\r\n        \"smoker\": true,\r\n        \"surname\": \"Bros\",\r\n        \"zip\": 34567\r\n    },\r\n    \"simple\": false,\r\n    \"zip\": 43206\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -985,7 +985,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"joan.jara@gmail.com\",\r\n    \"id\": 6,\r\n    \"name\": \"Joan\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"Jara\"\r\n}",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"email\": \"joan.jara@gmail.com\",\r\n    \"name\": \"Joan\",\r\n    \"pet\": true,\r\n    \"sex\": \"home\",\r\n    \"smoker\": false,\r\n    \"surname\": \"Jara\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1358,7 +1358,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent",
+							"raw": "http://localhost:8080/Practica1_JoanJara_AleixIglesias/rest/api/v1/tenant/3/rent?",
 							"protocol": "http",
 							"host": [
 								"localhost"
