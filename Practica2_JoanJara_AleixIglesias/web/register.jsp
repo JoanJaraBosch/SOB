@@ -4,7 +4,7 @@
         <title>Registre d'usuari</title>
     </head>
     <body>
-        <h2>User details</h2>  
+        <h2>Dades de l'usuari</h2>  
         <form method="post" action="write.do">
             <table>
                 <tr>
@@ -13,8 +13,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="first_name" 
-                               value="<jsp:getProperty name="user" property="name" />" />
+                               name="first_name" required />
                     </td>
                 </tr>
                 <tr>
@@ -23,8 +22,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="last_name" 
-                               value="<jsp:getProperty name="user" property="surname" />" />
+                               name="last_name" required/>
                     </td>
                 </tr>
                 <tr>
@@ -33,8 +31,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="email" 
-                               value="<jsp:getProperty name="user" property="email" />" />
+                               name="email" required/>
                     </td>
                 </tr>
                 <tr>
@@ -43,8 +40,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="username" 
-                               value="<jsp:getProperty name="user" property="username" />" />
+                               name="username" required/>
                     </td>
                 </tr>
                 <tr>
@@ -52,9 +48,13 @@
                         Pet:
                     </td>
                     <td>
-                        <input type="text" 
-                               name="pet" 
-                               value="<jsp:getProperty name="user" property="pet" />" />
+                        <input type="radio" name="pet" value="true" checked/>
+                          Yes
+                        </label>
+                        <label class="radio">
+                         <input type="radio" name="pet" value="false" />
+                          No
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -62,9 +62,13 @@
                         Smoker:
                     </td>
                     <td>
-                        <input type="text" 
-                               name="smoker" 
-                               value="<jsp:getProperty name="user" property="smoker" />" />
+                        <input type="radio" name="smoker" value="true" checked/>
+                          Yes
+                        </label>
+                        <label class="radio">
+                         <input type="radio" name="smoker" value="false" />
+                          No
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -73,8 +77,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="age" 
-                               value="<jsp:getProperty name="user" property="age" />" />
+                               name="age" required/>
                     </td>
                 </tr>
                 <tr>
@@ -83,8 +86,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="sex" 
-                               value="<jsp:getProperty name="user" property="sex" />" />
+                               name="sex" required/>
                     </td>
                 </tr>
                 <tr>
@@ -93,8 +95,7 @@
                     </td>
                     <td>
                         <input type="password" 
-                               name="password" 
-                               value="<jsp:getProperty name="user" property="password" />" />
+                               name="password" required/>
                     </td>
                 </tr>
                 <tr>
