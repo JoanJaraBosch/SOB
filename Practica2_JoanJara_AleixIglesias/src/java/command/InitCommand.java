@@ -5,7 +5,7 @@
  */
 package command;
 
-import classes.Tenant;
+import frontend.Client;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -21,10 +21,10 @@ public class InitCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        request.setAttribute("user", new Tenant());
+        request.setAttribute("user", new Client());
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/view.jsp").forward(request, response);
+        context.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 }

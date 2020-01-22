@@ -5,8 +5,8 @@
  */
 package serveis;
 
-import classes.ResponseHandler;
-import classes.Room;
+import backend.ResponseHandler;
+import backend.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

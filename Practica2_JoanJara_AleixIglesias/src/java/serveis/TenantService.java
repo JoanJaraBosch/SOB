@@ -5,11 +5,11 @@
  */
 package serveis;
 
-import classes.Renter;
-import classes.ResponseHandler;
-import classes.Tenant;
-import classes.Room;
-import classes.Secured;
+import backend.Renter;
+import backend.ResponseHandler;
+import backend.Tenant;
+import backend.Room;
+import backend.Secured;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

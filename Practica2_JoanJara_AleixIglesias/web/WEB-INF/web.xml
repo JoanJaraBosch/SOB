@@ -11,7 +11,7 @@
     
     <servlet>
         <servlet-name>controller</servlet-name>
-        <servlet-class>cat.urv.deim.sob.ControllerServlet</servlet-class>
+        <servlet-class>controller.ControllerServlet</servlet-class>
          <init-param>
             <param-name>setup</param-name>
             <param-value>mvc-setup.json</param-value>

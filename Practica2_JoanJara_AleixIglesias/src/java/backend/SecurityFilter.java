@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package backend;
 import com.sun.xml.messaging.saaj.util.Base64;
 import java.io.IOException;
 import java.lang.reflect.Method;

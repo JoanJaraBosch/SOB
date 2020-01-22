@@ -5,7 +5,7 @@
  */
 package command;
 
-import classes.Tenant;
+import frontend.Client;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -21,16 +21,23 @@ public class WriteCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        Tenant user = new Tenant();
+        Client user = new Client();
 
         user.setName(request.getParameter("first_name"));
         user.setSurname(request.getParameter("last_name"));
         user.setEmail(request.getParameter("email"));
+        user.setAge(Integer.parseInt(request.getParameter("age")));
+        user.setPassword(request.getParameter("password"));
+        user.setUsername(request.getParameter("username"));
+        user.setPet(Boolean.parseBoolean(request.getParameter("pet")));
+        user.setSmoker(Boolean.parseBoolean(request.getParameter("smoker")));
+        user.setSex(request.getParameter("sex"));
+        
 
         request.setAttribute("user", user);
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/view.jsp").forward(request, response);
+        context.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 }

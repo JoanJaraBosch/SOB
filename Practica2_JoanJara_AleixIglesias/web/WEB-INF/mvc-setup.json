@@ -2,11 +2,11 @@
   "commands": [
     {
       "URI": "/init",
-      "class": "cat.urv.deim.sob.command.InitCommand" 
+      "class": "command.InitCommand" 
     },
     {
       "URI": "/write",
-      "class": "cat.urv.deim.sob.command.WriteCommand" 
+      "class": "command.WriteCommand" 
     }
   ]
 }
