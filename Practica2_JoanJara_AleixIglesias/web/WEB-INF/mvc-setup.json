@@ -7,6 +7,10 @@
     {
       "URI": "/write",
       "class": "command.WriteCommand" 
+    },
+    {
+      "URI": "/search",
+      "class": "command.SearchCommand" 
     }
   ]
 }
