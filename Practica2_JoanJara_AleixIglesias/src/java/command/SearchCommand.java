@@ -39,7 +39,7 @@ public class SearchCommand implements Command {
         if(location.equals("")) location = "all";
         RoomClient r = new RoomClient();
         Response res = r.findCriterion(location, "desc");
-         List<Room> habitacions = null;
+        List<Room> habitacions = null;
         if(res.getStatus() == 200){
             habitacions = res.readEntity(new GenericType<List<Room>>(){});
             if(location.equals("all")){

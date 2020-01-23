@@ -5,13 +5,43 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Cercador d'Habitacions</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body id="rooms">
+        <jsp:include page="index.html" />
+        <div class="container mt-3">
+            <div class="row">
+                <c:choose>
+                    <c:when test = "${rooms != null}">
+                        <c:forEach items="${rooms}" var="elem">
+                            <div class="col-md-6 mb-3">
+                                <div class="card card-body">
+                                    <h2>${elem.city}</h2>
+                                    <image src="${elem.imatge}" />
+                                    <h2 id="preuMes" class="currency">${elem.price}</h2>
+                                    <div class="row-form"> 
+                                        <h5>${elem.city}. ${elem.adreça}, ${elem.roomID}</h5>
+                                        <h5 class="replaced">${elem.tenant.id}</h5>
+                                    </div>
+                                    <p id="descripcio" class="text-muted"> ${elem.description}</p>
+
+                                    <form id="formRoom" method="post" action="roomById.do" class="form-inline">
+                                        <input type="hidden" id="roomId" name="room" value="">
+                                        <button class="btn btn-success my-2 my-sm-0" id="habId" type="submit" name="idRoom" onclick="saveID()" value="${elem.roomID}">More details</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </c:forEach> 
+                    </c:when>
+                    <c:otherwise> <div id="noHab" class="card card-body"><div class="col"><h2> No s'han trobat habitacions. </h2> </div></div></c:otherwise>
+                </c:choose>
+            </div>
+        </div>
     </body>
 </html>

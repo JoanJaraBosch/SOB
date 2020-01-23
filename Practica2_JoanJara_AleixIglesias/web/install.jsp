@@ -51,9 +51,9 @@
             
             /* creating tables */
             String tables[] = new String[] {
-                "CREATE TABLE TENANT (ID INTEGER NOT NULL, SMOKER BOOLEAN, PET BOOLEAN,NAME VARCHAR(20) NOT NULL, SURNAME VARCHAR(20) NOT NULL, SEX VARCHAR(20) NOT NULL, AGE INTEGER NOT NULL,EMAIL VARCHAR(20) NOT NULL,PRIMARY KEY (ID))",
+                "CREATE TABLE TENANT (ID INTEGER NOT NULL, SMOKER BOOLEAN, PET BOOLEAN,NAME VARCHAR(20) NOT NULL, SURNAME VARCHAR(20) NOT NULL, SEX VARCHAR(20) NOT NULL, AGE INTEGER NOT NULL,EMAIL VARCHAR(20) NOT NULL, PRIMARY KEY (ID))",
                 "CREATE TABLE RENTER (ID INTEGER NOT NULL, SEX VARCHAR(10) NOT NULL,NAME VARCHAR(10) NOT NULL, SURNAME VARCHAR(10) NOT NULL, ADREÇA VARCHAR(400) NOT NULL, CITY VARCHAR(20) NOT NULL, EMAIL VARCHAR(30) NOT NULL, SMOKER BOOLEAN, PET BOOLEAN, AGE_MAX INTEGER NOT NULL, AGE_MIN INTEGER NOT NULL,ZIP INTEGER NOT NULL,PRIMARY KEY (ID))",
-                "CREATE TABLE ROOM (ROOM_ID INTEGER NOT NULL, DESCRIPTION VARCHAR(400) NOT NULL, ADREÇA VARCHAR(400) NOT NULL,CITY VARCHAR(25), PRICE DECIMAL(8, 4),SIMPLE_ROOM BOOLEAN, INDOOR BOOLEAN, FURNISHED BOOLEAN, ZIPCODE INTEGER NOT NULL, RENTER_ID INT, TENANT_ID INT , FOREIGN KEY (TENANT_ID) REFERENCES TENANT(ID), FOREIGN KEY (RENTER_ID) REFERENCES RENTER(ID),PRIMARY KEY (ROOM_ID))",
+                "CREATE TABLE ROOM (ROOM_ID INTEGER NOT NULL, DESCRIPTION VARCHAR(400) NOT NULL, ADREÇA VARCHAR(400) NOT NULL,CITY VARCHAR(25), PRICE DECIMAL(8, 4),SIMPLE_ROOM BOOLEAN, INDOOR BOOLEAN, FURNISHED BOOLEAN, ZIPCODE INTEGER NOT NULL,RENTER_ID INT, IMATGE VARCHAR(100) NOT NULL, TENANT_ID INT , FOREIGN KEY (TENANT_ID) REFERENCES TENANT(ID), FOREIGN KEY (RENTER_ID) REFERENCES RENTER(ID),PRIMARY KEY (ROOM_ID))",
                 /*"CREATE TABLE DISCOUNT_CODE (DISCOUNT_CODE CHAR(1) NOT NULL, RATE DECIMAL(4, 2), PRIMARY KEY (DISCOUNT_CODE))",
                 "CREATE TABLE MICRO_MARKET (ZIP_CODE VARCHAR(10) NOT NULL, RADIUS DOUBLE, AREA_LENGTH DOUBLE, AREA_WIDTH DOUBLE, PRIMARY KEY (ZIP_CODE))",
             */
@@ -84,10 +84,10 @@
                 "INSERT INTO RENTER VALUES(3, 'home','Luigi', 'Bros', 'Carrer pedrastela', 'Reus', 'fals2@gmail.com', FALSE, TRUE, 80, 18,43209)",
                 "INSERT INTO RENTER VALUES(4, 'home','Esvalda', 'Antoniet', 'Avinguda diagonal', 'Dubai', 'fals3@gmail.com', FALSE, FALSE, 50, 50,50034)",
                 
-                "INSERT INTO ROOM VALUES (1, 'Habitacio gran i neta al centre de Reus.', 'Carrer monestir de poblet num28','Reus', 900.00, TRUE, FALSE, TRUE, 43205,1,null)",
-                "INSERT INTO ROOM VALUES (2, 'Habitacio ambientada en del estil japones.', 'Carrer ripoll a les afores de Reus','Reus', 400.00, FALSE, FALSE, TRUE, 43206,2,null)",
-                "INSERT INTO ROOM VALUES (3, 'Habitacio en un gratacels de dubai on es veu la posta de sol', 'Avinguda de dubai falsa','Dubai', 1000.66, FALSE, FALSE, FALSE, 90205,3,null)",
-                "INSERT INTO ROOM VALUES (4, 'Habitacio petita de 40m2 a cambrils.', 'Riera de cambrils','Cambrils', 200.45, TRUE, TRUE, TRUE, 43205,4,null)",
+                "INSERT INTO ROOM VALUES (1, 'Habitacio gran i neta al centre de Reus.', 'Carrer monestir de poblet num28','Reus', 900.00, TRUE, FALSE, TRUE, 43205,1,'https://okdiario.com/img/viajes/2016/11/19/convertir-el-dormitorio-en-una-suite.jpg' ,null)",
+                "INSERT INTO ROOM VALUES (2, 'Habitacio ambientada en del estil japones.', 'Carrer ripoll a les afores de Reus','Reus', 400.00, FALSE, FALSE, TRUE, 43206,2, 'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2017/11/03/15097220522736.jpg',null)",
+                "INSERT INTO ROOM VALUES (3, 'Habitacio en un gratacels de dubai on es veu la posta de sol', 'Avinguda de dubai falsa','Dubai', 1000.66, FALSE, FALSE, FALSE, 90205,3, 'https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/156/2017/09/11143942/C2_-Superior-room.jpg',null)",
+                "INSERT INTO ROOM VALUES (4, 'Habitacio petita de 40m2 a cambrils.', 'Riera de cambrils','Cambrils', 200.45, TRUE, TRUE, TRUE, 43205,4,'https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/156/2017/09/11143942/C2_-Superior-room.jpg' ,null)",
                 /*"INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (2, 'M', '95035', 'New Enterprises', '9754 Main Street', 'P.O. Box 567', 'Miami', 'FL', '305-555-0148', '305-555-0149', 'www.new.example.com', 50000)",
                 "INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (25, 'M', '85638', 'Wren Computers', '8989 Red Albatross Drive', 'Suite 9897', 'Houston', 'TX', '214-555-0133', '214-555-0134', 'www.wrencomp.example.com', 25000)",
                 "INSERT INTO " + dbname + ".CUSTOMER (CUSTOMER_ID, DISCOUNT_CODE, ZIP, \"NAME\", ADDRESSLINE1, ADDRESSLINE2, CITY, \"STATE\", PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (3, 'L', '12347', 'Small Bill Company', '8585 South Upper Murray Drive', 'P.O. Box 456', 'Alanta', 'GA', '555-555-0175', '555-555-0176', 'www.smallbill.example.com', 90000)",

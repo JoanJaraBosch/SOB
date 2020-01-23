@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findByAdreça", query = "SELECT c FROM Room c WHERE c.adreça = :adreça"),
     @NamedQuery(name = "Room.findByIndoor", query = "SELECT c FROM Room c WHERE c.indoor = :indoor"),
     @NamedQuery(name = "Room.findByZip", query = "SELECT c FROM Room c WHERE c.zip = :zip"),
+    @NamedQuery(name = "Room.findByImage", query = "SELECT c FROM Room c WHERE c.imatge = :imatge"),
     @NamedQuery(name = "Room.findByFurnished", query = "SELECT c FROM Room c WHERE c.furnished = :furnished")})
 public class Room implements Serializable, Comparable<Room>{
     private static final long serialVersionUID = 1L;
@@ -63,7 +64,9 @@ public class Room implements Serializable, Comparable<Room>{
     private Boolean indoor = false;
     @Column(name = "FURNISHED")
     private Boolean furnished = false;
-     
+    @Size(max = 100)
+    @Column(name= "IMATGE")
+    private String imatge="";
     
     @OneToOne
     @JoinColumn(name = "RENTER_ID")
@@ -87,8 +90,9 @@ public class Room implements Serializable, Comparable<Room>{
      * @param smoker
      * @param age
      * @param pet
+     * @param imatge
      */
-    public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet) {
+    public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet, String imatge) {
         this.roomID=id;
         this.description=description;
         this.city=city;
@@ -98,6 +102,7 @@ public class Room implements Serializable, Comparable<Room>{
         this.furnished=furnished;
         this.adreça=adreça;
         this.zip=zip;
+        this.imatge=imatge;
     }
     
     /**
@@ -336,4 +341,14 @@ public class Room implements Serializable, Comparable<Room>{
         }
         return id;
     }
+
+    public String getImatge() {
+        return imatge;
+    }
+
+    public void setImatge(String imatge) {
+        this.imatge = imatge;
+    }
+    
+    
 }
