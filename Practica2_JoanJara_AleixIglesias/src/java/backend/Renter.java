@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Renter.findByRoomId", query = "SELECT c FROM Renter c WHERE c.id = :id"),
     @NamedQuery(name = "Renter.findByAdreça", query = "SELECT c FROM Renter c WHERE c.name = :name"),
     @NamedQuery(name = "Renter.findByName", query = "SELECT c FROM Renter c WHERE c.surname = :surname"),
-    @NamedQuery(name = "Renter.findBySurname", query = "SELECT c FROM Renter c WHERE c.adreça = :adreça"),
+    @NamedQuery(name = "Renter.findBySurname", query = "SELECT c FROM Renter c WHERE c.adresa = :adresa"),
     @NamedQuery(name = "Renter.findByEmail", query = "SELECT c FROM Renter c WHERE c.email = :email"),
     @NamedQuery(name = "Renter.findByZip", query = "SELECT c FROM Renter c WHERE c.zip = :zip"),
     @NamedQuery(name = "Renter.findBySex", query = "SELECT c FROM Renter c WHERE c.sex = :sex"),
@@ -66,7 +66,7 @@ public class Renter implements Serializable{
     @Column(name = "SURNAME")
     private String surname;
     @Column(name = "ADREÇA")
-    private String adreça;
+    private String adresa;
     @Size(max = 30)
     @Column(name = "CITY")
     private String city;
@@ -106,14 +106,14 @@ public class Renter implements Serializable{
      * @param smoker
      * @param pet
      */
-    public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adreça, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet, String username, String password) {
+    public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adrsa, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet, String username, String password) {
         this.id = id;
         this.zip = zip;
         this.email = email;
         this.sex = sex;
         this.name = name;
         this.surname = surname;
-        this.adreça = adreça;
+        this.adresa = adresa;
         this.city = city;
         this.agemax = agemax;
         this.agemin = agemin;
@@ -171,20 +171,12 @@ public class Renter implements Serializable{
         this.email = email;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getAdreça() {
-        return adreça;
+    public String getAdresa() {
+        return adresa;
     }
 
-    /**
-     *
-     * @param adreça
-     */
-    public void setAdreça(String adreça) {
-        this.adreça = adreça;
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
     }
 
     /**

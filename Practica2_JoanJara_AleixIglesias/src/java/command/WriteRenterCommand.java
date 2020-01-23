@@ -36,7 +36,7 @@ public class WriteRenterCommand implements Command {
             user.setPet(Boolean.parseBoolean(request.getParameter("pet")));
             user.setSmoker(Boolean.parseBoolean(request.getParameter("smoker")));
             user.setSex(request.getParameter("sex"));
-            user.setAdreça(request.getParameter("adresa"));
+            user.setAdresa(request.getParameter("adress"));
             user.setZip(Integer.parseInt(request.getParameter("zip")));
             user.setCity(request.getParameter("city"));
             user.setAgemax(Integer.parseInt(request.getParameter("age_max")));

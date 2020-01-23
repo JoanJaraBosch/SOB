@@ -113,7 +113,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               name="adresa" required/>
+                               name="adress" required/>
                     </td>
                 </tr>
                 <tr>
