@@ -5,12 +5,16 @@
  */
 package command;
 
+import backend.Room;
 import frontend.RoomClient;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import serveis.RoomService;
 
@@ -33,13 +37,19 @@ public class SearchCommand implements Command {
         }
         
         if(location.equals("")) location = "all";
-        
-        System.out.println(location);
-        
         RoomClient r = new RoomClient();
         Response res = r.findCriterion(location, "desc");
-        System.out.println(res);
-        request.setAttribute("habitacions", res);
+         List<Room> habitacions = null;
+        if(res.getStatus() == 200){
+            habitacions = res.readEntity(new GenericType<List<Room>>(){});
+            if(location.equals("all")){
+                Collections.sort(habitacions, Room.Comparators.PRICECOMP);
+                Collections.reverse(habitacions);
+            }
+            request.setAttribute("rooms",  habitacions);
+        }
+        System.out.println(habitacions);
+        request.setAttribute("habitacions", habitacions);
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/searchedRooms.jsp").forward(request, response);
