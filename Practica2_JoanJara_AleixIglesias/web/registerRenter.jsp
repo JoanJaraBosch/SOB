@@ -4,6 +4,8 @@
         <title>Registre d'usuari</title>
     </head>
     <body>
+        <% if (response.getStatus() != 201) { %>
+        <p>Error al registrar el Renter</p><%}%>
         <h2>Dades de l'usuari</h2>  
         <form method="post" action="writeRenter.do">
             <table>

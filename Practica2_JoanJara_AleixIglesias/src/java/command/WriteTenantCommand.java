@@ -50,6 +50,7 @@ public class WriteTenantCommand implements Command {
                 context.getRequestDispatcher("/index.html").forward(request, response);
             }
             else{
+                request.setAttribute("error", res.getStatus());
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/registerTenant.jsp").forward(request, response);
             }

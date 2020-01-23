@@ -100,14 +100,26 @@ public class TenantService extends AbstractFacade<Tenant>{
                 r.setResponse("403");
                 return Response.status(403).entity(r).build();
             }else{
+                if(!sameUsername(entity.getUsername())){
+                    entity.setId(entity.maxID(super.findAll())+1);
+                    super.create(entity);
+                    return Response.status(201).entity(entity).build();
+                }else{
+                    ResponseHandler r = new ResponseHandler();
+                    r.setResponse("403");
+                    return Response.status(403).entity(r).build();
+                }
+            }
+        }else{
+            if(!sameUsername(entity.getUsername())){
                 entity.setId(entity.maxID(super.findAll())+1);
                 super.create(entity);
                 return Response.status(201).entity(entity).build();
+            }else{
+                ResponseHandler r = new ResponseHandler();
+                r.setResponse("403");
+                return Response.status(403).entity(r).build();
             }
-        }else{
-            entity.setId(entity.maxID(super.findAll())+1);
-            super.create(entity);
-            return Response.status(201).entity(entity).build();
         }
     }
     
@@ -262,6 +274,19 @@ public class TenantService extends AbstractFacade<Tenant>{
             response=Response.status(400).entity(r).build();
         }
         return response;
+    }
+    
+    private Boolean sameUsername(String username){
+        Boolean same = false;
+        List<Tenant> all = this.findAll();
+        try{
+            for(Tenant r : all){
+                if(r.getUsername().toLowerCase().equals(username.toLowerCase())) same=true;
+            }
+        }catch(java.lang.NullPointerException e){
+            same=false;
+        }
+        return same;
     }
     
     /**

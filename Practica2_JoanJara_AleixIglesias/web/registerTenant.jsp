@@ -1,9 +1,13 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.io.StringWriter"%>
 <jsp:useBean id="user" class="frontend.TenantClient" scope="request" />
 <html>
     <head>
         <title>Registre d'usuari</title>
     </head>
     <body>
+        <% if (response.getStatus() != 201) { %>
+        <p>Error al registrar el Tenant</p><%}%>
         <h2>Dades de l'usuari</h2>  
         <form method="post" action="writeTenant.do">
             <table>
