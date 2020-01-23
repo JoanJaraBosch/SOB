@@ -5,8 +5,8 @@
       "class": "command.InitCommand" 
     },
     {
-      "URI": "/write",
-      "class": "command.WriteCommand" 
+      "URI": "/writeRenter",
+      "class": "command.WriteRenterCommand" 
     },
     {
       "URI": "/search",
@@ -16,6 +16,14 @@
     {
       "URI": "/login",
       "class": "command.LogInCommand" 
+    },
+    {
+      "URI": "/tipeRegister",
+      "class": "command.EscollirCommand" 
+    },
+    {
+      "URI": "/writeTenant",
+      "class": "command.WriteTenantCommand" 
     }
   ]
 }

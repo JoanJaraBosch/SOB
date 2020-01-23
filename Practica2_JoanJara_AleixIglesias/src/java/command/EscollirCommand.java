@@ -5,18 +5,24 @@
  */
 package command;
 
+import backend.Renter;
+import backend.Tenant;
+import frontend.RenterClient;
 import frontend.TenantClient;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Joan
  */
-public class LogInCommand implements Command {
+public class EscollirCommand implements Command {
 
     @Override
     public void execute(
@@ -25,10 +31,18 @@ public class LogInCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        request.setAttribute("user", new TenantClient());
+        if(Boolean.parseBoolean(request.getParameter("tipus"))){
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/registerTenant.jsp").forward(request, response);
+            
+        }else{
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/registerRenter.jsp").forward(request, response);
+        }
+        
 
         // 2. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/register.jsp").forward(request, response);
+        
     }
+    
 }

@@ -5,6 +5,7 @@
  */
 package backend;
 
+import frontend.EncryptPassword;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -242,7 +243,7 @@ public class Tenant implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptPassword.encodePassword(password);
     }
 
     public void setUsername(String username) {

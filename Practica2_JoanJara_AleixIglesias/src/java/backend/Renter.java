@@ -5,7 +5,9 @@
  */
 package backend;
 
+import frontend.EncryptPassword;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -318,7 +320,7 @@ public class Renter implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptPassword.encodePassword(password);
     }
 
     public String getUsername() {
@@ -329,5 +331,11 @@ public class Renter implements Serializable{
         this.username = username;
     }
     
-    
+    public Integer maxID(List<Renter> renters){
+        Integer id=0;
+        for(Renter a:renters){
+            if(a.getId()>id) id = a.getId();
+        }
+        return id;
+    }
 }
