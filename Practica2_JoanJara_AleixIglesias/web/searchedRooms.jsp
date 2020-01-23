@@ -22,14 +22,16 @@
                         <c:forEach items="${rooms}" var="elem">
                             <div class="col-md-6 mb-3">
                                 <div class="card card-body">
-                                    <h2>${elem.city}</h2>
+                                    <h2>${elem.renter.name}</h2>
                                     <image src="${elem.imatge}" />
-                                    <h2 id="preuMes" class="currency">${elem.price}</h2>
-                                    <div class="row-form"> 
-                                        <h5>${elem.city}. ${elem.adreça}, ${elem.roomID}</h5>
-                                        <h5 class="replaced">${elem.tenant.id}</h5>
-                                    </div>
+                                    <h2 id="preuMes" class="currency">${elem.price}€</h2>
                                     <p id="descripcio" class="text-muted"> ${elem.description}</p>
+                                    <div class="row-form"> 
+                                        <h5>${elem.city}. ${elem.adresa}, ${elem.zip}</h5>
+                                        <h5>Habitacio simple: ${elem.simple} </h5>
+                                        <h5>Habitacio indoor: ${elem.indoor} </h5>
+                                        <h5>Habitacio moblada: ${elem.furnished} </h5>
+                                    </div>
 
                                     <form id="formRoom" method="post" action="roomById.do" class="form-inline">
                                         <input type="hidden" id="roomId" name="room" value="">

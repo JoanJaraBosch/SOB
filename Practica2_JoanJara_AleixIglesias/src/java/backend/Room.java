@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findBySimple", query = "SELECT c FROM Room c WHERE c.simple = :simple"),
     @NamedQuery(name = "Room.findByCity", query = "SELECT c FROM Room c WHERE c.city = :city"),
     @NamedQuery(name = "Room.findByPrice", query = "SELECT c FROM Room c WHERE c.price = :price"),
-    @NamedQuery(name = "Room.findByAdreça", query = "SELECT c FROM Room c WHERE c.adreça = :adreça"),
+    @NamedQuery(name = "Room.findByAdreça", query = "SELECT c FROM Room c WHERE c.adresa = :adresa"),
     @NamedQuery(name = "Room.findByIndoor", query = "SELECT c FROM Room c WHERE c.indoor = :indoor"),
     @NamedQuery(name = "Room.findByZip", query = "SELECT c FROM Room c WHERE c.zip = :zip"),
     @NamedQuery(name = "Room.findByImage", query = "SELECT c FROM Room c WHERE c.imatge = :imatge"),
@@ -52,7 +52,7 @@ public class Room implements Serializable, Comparable<Room>{
     @Column(name = "DESCRIPTION")
     private String description = "";
     @Column(name = "ADREÇA")
-    private String adreça = "";
+    private String adresa = "";
     @Size(max = 30)
     @Column(name = "CITY")
     private String city = "";
@@ -80,7 +80,7 @@ public class Room implements Serializable, Comparable<Room>{
      *
      * @param id
      * @param zip
-     * @param adreça
+     * @param adresa
      * @param description
      * @param city
      * @param price
@@ -92,7 +92,7 @@ public class Room implements Serializable, Comparable<Room>{
      * @param pet
      * @param imatge
      */
-    public Room(Integer id,Integer zip, String adreça,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet, String imatge) {
+    public Room(Integer id,Integer zip, String adresa,String description,String city ,Float price, Boolean simple,Boolean indoor,Boolean furnished,Boolean smoker,Integer age, Boolean pet, String imatge) {
         this.roomID=id;
         this.description=description;
         this.city=city;
@@ -100,7 +100,7 @@ public class Room implements Serializable, Comparable<Room>{
         this.simple=simple;
         this.indoor=indoor;
         this.furnished=furnished;
-        this.adreça=adreça;
+        this.adresa=adresa;
         this.zip=zip;
         this.imatge=imatge;
     }
@@ -243,22 +243,6 @@ public class Room implements Serializable, Comparable<Room>{
 
     /**
      *
-     * @return
-     */
-    public String getAdreça() {
-        return adreça;
-    }
-
-    /**
-     *
-     * @param adreça
-     */
-    public void setAdreça(String adreça) {
-        this.adreça = adreça;
-    }
-
-    /**
-     *
      * @param t
      * @return
      */
@@ -287,15 +271,6 @@ public class Room implements Serializable, Comparable<Room>{
             }
            };
      }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return "Room{" + "roomID=" + roomID + ", zip=" + zip + ", description=" + description + ", adre\u00e7a=" + adreça + ", city=" + city + ", price=" + price + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + '}';
-    }
 
     /**
      *
@@ -349,6 +324,20 @@ public class Room implements Serializable, Comparable<Room>{
     public void setImatge(String imatge) {
         this.imatge = imatge;
     }
+
+    public String getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "roomID=" + roomID + ", zip=" + zip + ", description=" + description + ", adresa=" + adresa + ", city=" + city + ", price=" + price + ", simple=" + simple + ", indoor=" + indoor + ", furnished=" + furnished + ", imatge=" + imatge + ", renter=" + renter + ", tenant=" + tenant + '}';
+    }
+    
     
     
 }
