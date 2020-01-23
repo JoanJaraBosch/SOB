@@ -34,5 +34,10 @@ public class TenantClient {
         WebTarget resource = webTarget.path("");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
     }
+     
+     public Response findTenantById(Integer id) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
+    }
 }
 

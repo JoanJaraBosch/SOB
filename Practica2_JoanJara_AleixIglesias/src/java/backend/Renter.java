@@ -5,6 +5,7 @@
  */
 package backend;
 
+import encryptar.EncryptarPassword;
 import frontend.EncryptPassword;
 import java.io.Serializable;
 import java.util.List;
@@ -312,7 +313,7 @@ public class Renter implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = EncryptPassword.encodePassword(password);
+        this.password = EncryptarPassword.getMD5(password);
     }
 
     public String getUsername() {

@@ -24,6 +24,10 @@
     {
       "URI": "/writeTenant",
       "class": "command.WriteTenantCommand" 
+    },
+    {
+      "URI": "/autenticacio",
+      "class": "command.AutenticacioCommand" 
     }
   ]
 }
