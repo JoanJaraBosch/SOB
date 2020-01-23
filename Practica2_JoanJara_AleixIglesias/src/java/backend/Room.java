@@ -64,7 +64,7 @@ public class Room implements Serializable, Comparable<Room>{
     private Boolean indoor = false;
     @Column(name = "FURNISHED")
     private Boolean furnished = false;
-    @Size(max = 100)
+    @Size(max = 300)
     @Column(name= "IMATGE")
     private String imatge="";
     
