@@ -39,6 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Renter.findByAgeMax", query = "SELECT c FROM Renter c WHERE c.agemax = :agemax"),
     @NamedQuery(name = "Renter.findByAgeMin", query = "SELECT c FROM Renter c WHERE c.agemin = :agemin"),
     @NamedQuery(name = "Renter.findByPet", query = "SELECT c FROM Renter c WHERE c.pet = :pet"),
+    @NamedQuery(name = "Renter.findByPassword", query = "SELECT c FROM Renter c WHERE c.password = :password"),
+    @NamedQuery(name = "Renter.findByUsername", query = "SELECT c FROM Renter c WHERE c.username = :username"),
     @NamedQuery(name = "Renter.findBySmoker", query = "SELECT c FROM Renter c WHERE c.smoker = :smoker")})
 public class Renter implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -74,6 +76,12 @@ public class Renter implements Serializable{
     private Boolean smoker;
     @Column(name = "PET")
     private Boolean pet;
+    @Size(max = 100)
+    @Column(name = "PASSWORD")
+    private String password;
+    @Size(max = 100)
+    @Column(name = "USERNAME")
+    private String username;
    
     /**
      *
@@ -96,7 +104,7 @@ public class Renter implements Serializable{
      * @param smoker
      * @param pet
      */
-    public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adreça, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet) {
+    public Renter(Integer id, Integer zip, String email, String sex, String name, String surname, String adreça, String city, Integer agemax, Integer agemin, Boolean smoker, Boolean pet, String username, String password) {
         this.id = id;
         this.zip = zip;
         this.email = email;
@@ -109,6 +117,8 @@ public class Renter implements Serializable{
         this.agemin = agemin;
         this.smoker = smoker;
         this.pet = pet;
+        this.password=password;
+        this.username=username;
     }
     
     /**
@@ -302,4 +312,22 @@ public class Renter implements Serializable{
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    
 }

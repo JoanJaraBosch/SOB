@@ -33,6 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tenant.findByAge", query = "SELECT c FROM Tenant c WHERE c.age = :age"),
     @NamedQuery(name = "Tenant.findByPet", query = "SELECT c FROM Tenant c WHERE c.pet = :pet"),
     @NamedQuery(name = "Tenant.findBySmoker", query = "SELECT c FROM Tenant c WHERE c.smoker = :smoker"),
+    @NamedQuery(name = "Tenant.findByPassword", query = "SELECT c FROM Tenant c WHERE c.password = :password"),
+    @NamedQuery(name = "Tenant.findByUsername", query = "SELECT c FROM Tenant c WHERE c.username = :username"),
     @NamedQuery(name = "Tenant.findByEmail", query = "SELECT c FROM Tenant c WHERE c.email = :email"),
     @NamedQuery(name = "Tenant.findBySex", query = "SELECT c FROM Tenant c WHERE c.sex = :sex")})
 public class Tenant implements Serializable{
@@ -51,6 +53,12 @@ public class Tenant implements Serializable{
     @Size(max = 100)
     @Column(name = "EMAIL")
     private String email;
+    @Size(max = 100)
+    @Column(name = "PASSWORD")
+    private String password;
+    @Size(max = 100)
+    @Column(name = "USERNAME")
+    private String username;
     @Column(name = "PET")
     private Boolean pet;
     @Column(name = "SMOKER")
@@ -79,7 +87,7 @@ public class Tenant implements Serializable{
      * @param sex
      * @param age
      */
-    public Tenant(Integer id, String name, String surname, String email, Boolean pet, Boolean smoker, String sex, Integer age) {
+    public Tenant(Integer id, String name, String surname, String email, Boolean pet, Boolean smoker, String sex, Integer age, String password, String username) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -88,6 +96,8 @@ public class Tenant implements Serializable{
         this.smoker = smoker;
         this.sex = sex;
         this.age = age;
+        this.username=username;
+        this.password=password;
     }
 
     /**
