@@ -73,6 +73,20 @@
                 </tr>
                 <tr>
                     <td>
+                        Tipus d'usuari
+                    </td>
+                    <td>
+                        <input type="radio" name="tipus" value="true" checked/>
+                          Llogater
+                        </label>
+                        <label class="radio">
+                         <input type="radio" name="tipus" value="false" />
+                          Arrendador
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Age:
                     </td>
                     <td>
@@ -105,9 +119,6 @@
                     <td>
                     </td>
                 </tr>
-                <pre>
-                    <jsp:getProperty name="user" property="message" />
-                </pre>
             </table>
         </form>
     </body>
