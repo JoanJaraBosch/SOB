@@ -31,7 +31,7 @@ public class WriteRenterCommand implements Command {
             user.setName(request.getParameter("first_name"));
             user.setSurname(request.getParameter("last_name"));
             user.setEmail(request.getParameter("email"));
-            user.setPassword(request.getParameter("password"));
+            user.setPassword(encryptar.EncryptarPassword.getMD5(request.getParameter("password")));
             user.setUsername(request.getParameter("username"));
             user.setPet(Boolean.parseBoolean(request.getParameter("pet")));
             user.setSmoker(Boolean.parseBoolean(request.getParameter("smoker")));

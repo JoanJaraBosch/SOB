@@ -8,7 +8,6 @@ package command;
 import encryptar.EncryptarPassword;
 import backend.Renter;
 import backend.Tenant;
-import frontend.EncryptPassword;
 import frontend.RenterClient;
 import frontend.TenantClient;
 import java.io.IOException;
@@ -37,9 +36,11 @@ public class AutenticacioCommand implements Command {
         if(Boolean.parseBoolean(request.getParameter("tipus"))){//llogater
             TenantClient tClient = new TenantClient();
             Response res = tClient.findAllTenants();
+            List<Tenant> tenantList = res.readEntity(new GenericType<List<Tenant>>(){});
+            System.out.println(tenantList);
             Integer id = comprovacioAutenticacio(request.getParameter("username"), 
                     EncryptarPassword.getMD5(request.getParameter("password")), 
-                    res.readEntity(new GenericType<List<Tenant>>(){}));
+                    tenantList);
             if(id==null){
                 request.setAttribute("errorLogin", 404);
                 ServletContext context = request.getSession().getServletContext();
@@ -53,9 +54,12 @@ public class AutenticacioCommand implements Command {
         }else{//renter
             RenterClient rClient = new RenterClient();
             Response res =rClient.findAllRenters();
+            List<Renter> renterList = res.readEntity(new GenericType<List<Renter>>(){});
+            System.out.println(renterList);
+                    
             Integer id = comprovacioAutenticacio(request.getParameter("username"), 
                     EncryptarPassword.getMD5(request.getParameter("password")), 
-                    res.readEntity(new GenericType<List<Renter>>(){}));
+                    renterList);
             if(id==null){
                 request.setAttribute("errorLogin", 404);
                 ServletContext context = request.getSession().getServletContext();
@@ -83,6 +87,8 @@ public class AutenticacioCommand implements Command {
                 }
             }else{
                 if(((Renter) ob).getUsername().toLowerCase().equals(username.toLowerCase())){
+                    System.out.println(((Renter) ob).getPassword());
+                    System.out.println(password);
                     if(((Renter) ob).getPassword().toLowerCase().equals(password.toLowerCase())){
                         id = ((Renter) ob).getId();
                     }

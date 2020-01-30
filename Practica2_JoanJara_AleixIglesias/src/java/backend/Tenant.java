@@ -6,7 +6,6 @@
 package backend;
 
 import encryptar.EncryptarPassword;
-import frontend.EncryptPassword;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -99,7 +98,7 @@ public class Tenant implements Serializable{
         this.sex = sex;
         this.age = age;
         this.username=username;
-        this.password=password;
+        this.password=EncryptarPassword.getMD5(password);
     }
 
     /**
@@ -244,7 +243,7 @@ public class Tenant implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = EncryptarPassword.getMD5(password);
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -262,11 +261,9 @@ public class Tenant implements Serializable{
     public String getUsername() {
         return this.username;
     }
-    
+
     @Override
     public String toString() {
-        return "Tenant{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", pet=" + pet + ", smoker=" + smoker + ", sex=" + sex + ", age=" + age + '}';
+        return "Tenant{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password=" + password + ", username=" + username + ", pet=" + pet + ", smoker=" + smoker + ", sex=" + sex + ", age=" + age + '}';
     }
-    
-    
 }

@@ -31,7 +31,7 @@ public class WriteTenantCommand implements Command {
             throws ServletException, IOException {
 
             Tenant user = new Tenant();
-            user.setPassword(request.getParameter("password"));
+            user.setPassword(encryptar.EncryptarPassword.getMD5(request.getParameter("password")));
             user.setUsername(request.getParameter("username"));
             user.setName(request.getParameter("first_name"));
             user.setSurname(request.getParameter("last_name"));
