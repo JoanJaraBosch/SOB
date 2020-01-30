@@ -32,7 +32,7 @@ public class RoomClient {
      * @return totes les habitacions
      * @throws ClientErrorException error al connectar-se
      */
-    public Response findAllRooms(String criterion) throws ClientErrorException{
+    public Response findAllRooms() throws ClientErrorException{
         WebTarget resource = webTarget.path("all");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
     }
@@ -58,7 +58,7 @@ public class RoomClient {
      */
     public Response findCriterion(String location, String sort) throws ClientErrorException {
         WebTarget resource = webTarget;
-        if(location.equals("all")) return findAllRooms(sort);
+        if(location.equals("all")) return findAllRooms();
         
         resource = resource.queryParam("location", location).queryParam("sort", sort);
         System.out.println(resource.getUri().toString());

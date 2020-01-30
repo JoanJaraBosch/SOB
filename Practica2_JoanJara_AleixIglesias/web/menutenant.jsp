@@ -1,10 +1,16 @@
 <%-- 
+    Document   : menutenant
+    Created on : 30-ene-2020, 18:19:06
+    Author     : Joan
+--%>
+
+<%-- 
     Document   : menu
     Created on : 23-ene-2020, 17:48:23
     Author     : Joan
 --%>
 
-<jsp:useBean id="user" class="backend.Renter" scope="request" />
+<jsp:useBean id="user" class="backend.Tenant" scope="request" />
 <html>
     <head>
         <title>Registre d'usuari</title>
@@ -71,6 +77,34 @@
                 </tr>
                 <tr>
                     <td>
+                        Pet:
+                    </td>
+                    <td>
+                        <input type="radio" name="pet" value="true" checked/>
+                          Yes
+                        </label>
+                        <label class="radio">
+                         <input type="radio" name="pet" value="false" />
+                          No
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Smoker:
+                    </td>
+                    <td>
+                        <input type="radio" name="smoker" value="true" checked/>
+                          Yes
+                        </label>
+                        <label class="radio">
+                         <input type="radio" name="smoker" value="false" />
+                          No
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Simple: 
                     </td>
                     <td>
@@ -99,14 +133,14 @@
                 </tr>
                  <tr>
                     <td>
-                        Indoor 
+                        Outdoor: 
                     </td>
                     <td>
                         <input type="radio" name="outdoor" value="true" checked/>
                           Yes
                         </label>
                         <label class="radio">
-                         <input type="radio" name="indoor" value="false" />
+                         <input type="radio" name="outdoor" value="false" />
                           No
                         </label>
                     </td>

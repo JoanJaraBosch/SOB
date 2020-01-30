@@ -12,6 +12,8 @@
     <body>
         <h2>Credencials</h2>  
         <form method="post" action="autenticacio.do">
+             <% if (response.getStatus() == 404) { %>
+             <p>Tenant o Renter not found</p><%}%>
             <table>
                 <tr>
                     <tr>

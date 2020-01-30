@@ -47,9 +47,9 @@ public class AutenticacioCommand implements Command {
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = tClient.findTenantById(id);
-                request.setAttribute("user", res1.readEntity(Tenant.class));
+                request.setAttribute("tenant", res1.readEntity(Tenant.class));
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/menu.jsp").forward(request, response);
+                context.getRequestDispatcher("/menutenant.jsp").forward(request, response);
             }
         }else{//renter
             RenterClient rClient = new RenterClient();
@@ -61,12 +61,12 @@ public class AutenticacioCommand implements Command {
                     EncryptarPassword.getMD5(request.getParameter("password")), 
                     renterList);
             if(id==null){
-                request.setAttribute("errorLogin", 404);
+                request.setAttribute("status", 404);
                 ServletContext context = request.getSession().getServletContext();
-                 context.getRequestDispatcher("/login.jsp").forward(request, response);
+                context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = rClient.findRenterById(id);
-                request.setAttribute("user", res1.readEntity(Renter.class));
+                request.setAttribute("renter", res1.readEntity(Renter.class));
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/menu.jsp").forward(request, response);
             }

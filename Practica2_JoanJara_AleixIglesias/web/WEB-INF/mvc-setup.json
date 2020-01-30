@@ -28,6 +28,10 @@
     {
       "URI": "/autenticacio",
       "class": "command.AutenticacioCommand" 
+    },
+    {
+      "URI": "/writeRoom",
+      "class": "command.RoomRegisterCommand" 
     }
   ]
 }
