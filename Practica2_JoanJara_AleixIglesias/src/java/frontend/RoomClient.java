@@ -5,8 +5,10 @@
  */
 package frontend;
 
+import backend.Room;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 /**
@@ -63,6 +65,10 @@ public class RoomClient {
         resource = resource.queryParam("location", location).queryParam("sort", sort);
         System.out.println(resource.getUri().toString());
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
+    }
+    
+     public Response createRoom(Room room) throws ClientErrorException{
+        return webTarget.request().post(Entity.json(room));
     }
 
     /**

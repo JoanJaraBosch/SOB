@@ -26,7 +26,8 @@
                         Description:
                     </td>
                     <td>
-                        <input type="textarea" 
+                        <input type="text" style="WIDTH: 228px; HEIGHT: 98px"
+size=32
                                name="description" required />
                     </td>
                 </tr>

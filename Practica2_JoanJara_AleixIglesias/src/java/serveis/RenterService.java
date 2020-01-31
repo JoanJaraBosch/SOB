@@ -50,7 +50,6 @@ public class RenterService extends AbstractFacade<Renter>{
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Secured
     @Path("{id}")
     public Response findById(@PathParam("id") Integer id) {
         if(super.find(id)==null){
@@ -130,7 +129,6 @@ public class RenterService extends AbstractFacade<Renter>{
      * @return retorna 400 si falta alguna dada, 202 si edita la entitat i 201 si la crea i 202 si lactualitza
      */
     @PUT
-    @Secured
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -155,7 +153,6 @@ public class RenterService extends AbstractFacade<Renter>{
      * @return retorna 200 si tot ha anat be o 404 si no troba la classe
      */
     @DELETE
-    @Secured
     @Path("{id}")
     public Response deleteRenterById(@PathParam("id") int id) {
         Renter renter = super.find(id);

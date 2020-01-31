@@ -47,8 +47,8 @@ public class AutenticacioCommand implements Command {
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = tClient.findTenantById(id);
-                request.setAttribute("tenant", res1.readEntity(Tenant.class));
-                ServletContext context = request.getSession().getServletContext();
+                request.getSession().setAttribute("tenant", res1.readEntity(Tenant.class));
+                ServletContext context = request.getServletContext();
                 context.getRequestDispatcher("/menutenant.jsp").forward(request, response);
             }
         }else{//renter
@@ -66,7 +66,8 @@ public class AutenticacioCommand implements Command {
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = rClient.findRenterById(id);
-                request.setAttribute("renter", res1.readEntity(Renter.class));
+                Renter r = res1.readEntity(Renter.class);
+                request.getSession().setAttribute("renterHabitacio",r);
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/menu.jsp").forward(request, response);
             }
