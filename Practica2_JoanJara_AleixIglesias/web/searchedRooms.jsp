@@ -23,9 +23,15 @@
           Alquil·ler d'habitacions
       </div>
       <nav>
-          <a href="index.html">Buscador</a>
-          <a href="registre.do">Registrar-se</a>
-          <a href="login.do">Autenticar-se</a>
+          <a href="index.jsp">Buscador</a>
+          <% 
+            if(request.getSession().getAttribute("renter")==null && request.getSession().getAttribute("tenant")==null){ 
+                %>
+              <a href="registre.do">Registrar-se</a>
+              <a href="login.do">Autenticar-se</a>
+         <%
+            }
+          %>
       </nav>
     </div>
     </header>

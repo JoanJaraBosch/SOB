@@ -1,6 +1,13 @@
+<%-- 
+    Document   : index
+    Created on : 01-feb-2020, 13:35:22
+    Author     : Joan
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>
       Alquil·ler d'habitacions
     </title>
@@ -16,10 +23,15 @@
                 Alquil·ler d'habitacions
             </div>
             <nav>
-                <a href="index.html">Buscador</a>
-                <% if(${tenant==null} && ${renter==null}) %>
-                <a href="registre.do">Registrar-se</a>
-                <a href="login.do">Autenticar-se</a>
+                <a href="index.jsp">Buscador</a>
+          <% 
+            if(request.getSession().getAttribute("renter")==null && request.getSession().getAttribute("tenant")==null){ 
+                %>
+              <a href="registre.do">Registrar-se</a>
+              <a href="login.do">Autenticar-se</a>
+         <%
+            }
+          %>
             </nav>
           </div>
       </header>
