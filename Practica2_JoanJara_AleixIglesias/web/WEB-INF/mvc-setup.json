@@ -11,8 +11,7 @@
     {
       "URI": "/search",
       "class": "command.SearchCommand" 
-    }
-    ,
+    },
     {
       "URI": "/login",
       "class": "command.LogInCommand" 

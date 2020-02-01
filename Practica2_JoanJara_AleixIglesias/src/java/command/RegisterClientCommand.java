@@ -25,7 +25,6 @@ public class RegisterClientCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        request.setAttribute("user", new TenantClient());
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();

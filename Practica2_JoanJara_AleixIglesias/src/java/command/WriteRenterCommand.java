@@ -50,7 +50,7 @@ public class WriteRenterCommand implements Command {
             System.out.println(res1);
             if(res1.getStatus()==201){
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index.html").forward(request, response);
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
             }
             else{
                 request.setAttribute("error", res.getStatus());

@@ -47,9 +47,9 @@ public class AutenticacioCommand implements Command {
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = tClient.findTenantById(id);
-                request.getSession().setAttribute("tenant", res1.readEntity(Tenant.class));
+                request.getSession().setAttribute("usuariClient", res1.readEntity(Tenant.class));
                 ServletContext context = request.getServletContext();
-                context.getRequestDispatcher("/index.html").forward(request, response);
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
             }
         }else{//renter
             RenterClient rClient = new RenterClient();
@@ -67,9 +67,9 @@ public class AutenticacioCommand implements Command {
             }else{
                 Response res1 = rClient.findRenterById(id);
                 Renter r = res1.readEntity(Renter.class);
-                request.getSession().setAttribute("renter",r);
+                request.getSession().setAttribute("usuariClient",r);
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index.html").forward(request, response);
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
             }
         }
     }
