@@ -3,18 +3,41 @@
     Created on : 22-ene-2020, 19:00:49
     Author     : Joan
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Cercador d'Habitacions</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Cercador d'habitacions</title>
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="javascript/search.js"></script>
     </head>
     <body id="rooms">
-        <jsp:include page="index.html" />
+    <header>
+    <div class="wrapper">
+      <div class="logo">
+          Alquil·ler d'habitacions
+      </div>
+      <nav>
+          <a href="index.html">Buscador</a>
+          <a href="registre.do">Registrar-se</a>
+          <a href="login.do">Autenticar-se</a>
+      </nav>
+    </div>
+    </header>
+    <br />
+    <div class="barra_buscadora wrapper">
+    <form action="search.do" method="post">
+    <input type="search" placeholder="Search by city" name="ciutat"> 
+    <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+    </button>
+    </form>
+    </div>
         <div class="container mt-3">
             <div class="row">
                 <c:choose>

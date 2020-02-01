@@ -1,19 +1,36 @@
-<html>
+<html lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>
-      Alquiler d'habitacions
+      Alquil·ler d'habitacions
     </title>
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="javascript/search.js"></script>
   </head>
   <body>
-    <h2>Alquiler  de habitacions</h2>
+      <header>
+          <div class="wrapper">
+            <div class="logo">
+                Alquil·ler d'habitacions
+            </div>
+            <nav>
+                <a href="index.html">Buscador</a>
+                <% if(${tenant==null} && ${renter==null}) %>
+                <a href="registre.do">Registrar-se</a>
+                <a href="login.do">Autenticar-se</a>
+            </nav>
+          </div>
+      </header>
     <br />
-    <section class="webdesigntuts-workshop">
+    <div class="barra_buscadora wrapper">
     <form action="search.do" method="post">
     <input type="search" placeholder="Search by city" name="ciutat"> 
-    <button>Buscar</button>
-    <a href="registre.do" style="float:right; margin:10px">Registrar-se</a>
-    <a href="login.do" style="float:right; margin:10px">Autenticar-se</a>
+    <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
     </form>
-    </section>
+    </div>
   </body>
 </html>

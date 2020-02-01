@@ -6,13 +6,17 @@
 package command;
 
 import frontend.TenantClient;
+import java.io.IOException;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
-import java.io.IOException;
 
-public class InitCommand implements Command {
+/**
+ *
+ * @author Joan
+ */
+public class RegisterClientCommand implements Command {
 
     @Override
     public void execute(
@@ -27,4 +31,5 @@ public class InitCommand implements Command {
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/register.jsp").forward(request, response);
     }
+    
 }

@@ -49,7 +49,7 @@ public class RoomRegisterCommand implements Command {
         room.setIndoor(Boolean.parseBoolean(request.getParameter("indoor")));
         room.setFurnished(Boolean.parseBoolean(request.getParameter("furnsihed")));       
         room.setRoomID(room.maxID(res.readEntity(new GenericType<List<Room>>(){}))+1);
-        room.setRenter((Renter)request.getSession().getAttribute("renterHabitacio"));
+        room.setRenter((Renter)request.getSession().getAttribute("renter"));
         System.out.println(room);
         
         Response resp = tClient.createRoom(room);

@@ -7,6 +7,7 @@
 <jsp:useBean id="user" class="frontend.TenantClient" scope="request" />
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Login d'Usuari</title>
     </head>
     <body>

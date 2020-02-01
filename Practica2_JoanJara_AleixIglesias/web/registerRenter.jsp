@@ -1,6 +1,7 @@
 <jsp:useBean id="user" class="backend.Renter" scope="request" />
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Registre d'usuari</title>
     </head>
     <body>

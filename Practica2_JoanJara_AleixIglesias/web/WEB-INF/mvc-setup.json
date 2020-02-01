@@ -2,7 +2,7 @@
   "commands": [
     {
       "URI": "/registre",
-      "class": "command.InitCommand" 
+      "class": "command.RegisterClientCommand" 
     },
     {
       "URI": "/writeRenter",
