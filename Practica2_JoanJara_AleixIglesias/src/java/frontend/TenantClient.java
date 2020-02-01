@@ -6,10 +6,12 @@
 package frontend;
 
 import backend.Tenant;
+import java.util.Base64;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 /**
@@ -20,6 +22,7 @@ public class TenantClient {
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/Practica2_JoanJara_AleixIglesias/rest/api/v1/";
+    private String aut = "Basic "+Base64.getEncoder().encodeToString(("sob:sob").getBytes());
     
     public TenantClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -37,7 +40,12 @@ public class TenantClient {
      
      public Response findTenantById(Integer id) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get();
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).get();
+    }
+     
+     public Response deleteById(Integer id) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).delete();
     }
 }
 

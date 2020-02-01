@@ -47,7 +47,9 @@ public class AutenticacioCommand implements Command {
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
                 Response res1 = tClient.findTenantById(id);
-                request.getSession().setAttribute("usuariClient", res1.readEntity(Tenant.class));
+                Tenant t = res1.readEntity(Tenant.class);
+                System.out.println(res1);
+                request.getSession().setAttribute("usuariClient", t);
                 ServletContext context = request.getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);
             }

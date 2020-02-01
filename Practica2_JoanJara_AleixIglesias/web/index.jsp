@@ -22,6 +22,7 @@
             <div class="logo">
                 Alquil·ler d'habitacions
             </div>
+              <hr style="border-color:white;">
            <nav>
           <a href="index.jsp">Buscador</a>
           <% 
@@ -35,19 +36,15 @@
            <% 
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
-                <div>
                 <a href="registre.do">Afegir habitació</a>
                 <a href="registre.do">Modificar habitació</a>
                 <a href="login.do">Eliminar habitació</a>
-                </div>
                 <% }else{%>
                <a href="registre.do">Llogar habitació</a>
                <%}%>
-               <div>
               <a href="registre.do">Modificar dades</a>
-              <a href="registre.do">Eliminar usuari</a>
-              <a href="registre.do">Tancar sessió</a>
-              </div>
+              <a href="eliminatusuari.do">Eliminar usuari</a>
+              <a href="logout.do">Tancar sessió</a>
           <%}%>
       </nav>
           </div>

@@ -31,6 +31,14 @@
     {
       "URI": "/writeRoom",
       "class": "command.RoomRegisterCommand" 
+    },
+    {
+      "URI": "/logout",
+      "class": "command.CerrarSessionCommand" 
+    },
+    {
+      "URI": "/eliminatusuari",
+      "class": "command.EliminarUsuariCommand" 
     }
   ]
 }

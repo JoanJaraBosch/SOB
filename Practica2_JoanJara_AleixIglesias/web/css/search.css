@@ -22,7 +22,7 @@ header {
 }
 
 .wrapper {
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     margin: auto;
     overflow: hidden;
@@ -31,13 +31,13 @@ header {
 header .logo{
     color: #f2f2f2;
     font-size: 50px;
-    line-height: 200px;
-    float: left;
+    line-height: 100px;
+    floar: right;
 }
 
 header nav{
-    float: right;
-    line-height: 200px;
+    float: left;
+    line-height: 100px;
 }
 
 header nav a{
