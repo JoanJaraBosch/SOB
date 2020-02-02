@@ -5,7 +5,6 @@
  */
 package command;
 
-import frontend.TenantClient;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joan
  */
-public class RegisterClientCommand implements Command {
+public class ConfigCommand implements Command {
 
     @Override
     public void execute(
@@ -24,12 +23,10 @@ public class RegisterClientCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. process the request
-
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
-        context.getRequestDispatcher("/register.jsp").forward(request, response);
+        context.getRequestDispatcher("/configuser.jsp").forward(request, response);
     }
     
 }

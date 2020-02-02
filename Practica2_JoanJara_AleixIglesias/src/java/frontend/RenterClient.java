@@ -46,9 +46,8 @@ public class RenterClient {
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete();
     }
-     
-     public Response updateRenter(Integer id, Renter r) throws ClientErrorException{
+      public Response updateRenter(Integer id, Renter renter) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(Entity.json(r));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(Entity.json(renter));
     }
 }

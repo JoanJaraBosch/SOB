@@ -59,4 +59,10 @@ public class EliminarRoomCommand implements Command {
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);      
     }
+            roomC.deleteById(room.getRoomID());
+            request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/index.jsp").forward(request, response);      
+    }
+    
 }

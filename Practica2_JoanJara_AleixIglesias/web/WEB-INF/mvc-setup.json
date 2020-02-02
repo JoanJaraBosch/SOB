@@ -57,7 +57,15 @@
       "class": "command.EliminarUsuariCommand" 
     },
     {
-      "URI": "/eliminatroom",
+      "URI": "/config",
+      "class": "command.ConfigCommand" 
+    },
+    {
+      "URI": "/configuser",
+      "class": "command.ConfigUserCommand" 
+    },
+    {
+      "URI": "/eliminarroom",
       "class": "command.EliminarRoomCommand" 
     }
   ]

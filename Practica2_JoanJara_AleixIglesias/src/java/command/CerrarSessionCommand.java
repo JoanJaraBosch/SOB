@@ -27,6 +27,7 @@ public class CerrarSessionCommand implements Command {
     
             request.getSession().invalidate();
             ServletContext context = request.getSession().getServletContext();
+            request.getSession().setAttribute("usuariClient", null);
             context.getRequestDispatcher("/index.jsp").forward(request, response);      
     }
 }

@@ -48,9 +48,10 @@ public class TenantClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).delete();
     }
      
-      public Response updateTenant(Integer id, Tenant t) throws ClientErrorException{
+    public Response updateTenant(Integer id, Tenant t) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).post(Entity.json(t));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).put(Entity.json(t));
+
     }
 }
 

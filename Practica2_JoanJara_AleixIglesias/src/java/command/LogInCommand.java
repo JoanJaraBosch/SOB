@@ -24,11 +24,9 @@ public class LogInCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. process the request
-        request.setAttribute("user", new TenantClient());
-
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
+        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
         context.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
