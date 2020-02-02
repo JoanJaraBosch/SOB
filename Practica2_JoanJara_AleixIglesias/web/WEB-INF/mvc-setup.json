@@ -39,6 +39,10 @@
     {
       "URI": "/eliminatusuari",
       "class": "command.EliminarUsuariCommand" 
+    },
+    {
+      "URI": "/eliminatroom",
+      "class": "command.EliminarRoomCommand" 
     }
   ]
 }

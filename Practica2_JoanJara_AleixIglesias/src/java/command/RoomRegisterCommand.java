@@ -49,7 +49,7 @@ public class RoomRegisterCommand implements Command {
         room.setIndoor(Boolean.parseBoolean(request.getParameter("indoor")));
         room.setFurnished(Boolean.parseBoolean(request.getParameter("furnsihed")));       
         room.setRoomID(room.maxID(res.readEntity(new GenericType<List<Room>>(){}))+1);
-        room.setRenter((Renter)request.getSession().getAttribute("renter"));
+        room.setRenter((Renter)request.getSession().getAttribute("usuariClient"));
         System.out.println(room);
         
         Response resp = tClient.createRoom(room);
@@ -58,7 +58,7 @@ public class RoomRegisterCommand implements Command {
         if(resp.getStatus()!=201){
             context.getRequestDispatcher("/error.jsp").forward(request, response);
         }else{
-            context.getRequestDispatcher("/menu.jsp").forward(request, response);
+            context.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 }
