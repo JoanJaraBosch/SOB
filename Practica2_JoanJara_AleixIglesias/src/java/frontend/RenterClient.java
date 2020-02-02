@@ -11,6 +11,7 @@ import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 /**
@@ -44,5 +45,10 @@ public class RenterClient {
      public Response deleteById(Integer id) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete();
+    }
+     
+     public Response updateRenter(Integer id, Renter r) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(Entity.json(r));
     }
 }

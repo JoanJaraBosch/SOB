@@ -42,7 +42,7 @@
                 <% }else{%>
                <a href="registre.do">Llogar habitació</a>
                <%}%>
-              <a href="registre.do">Modificar dades</a>
+              <a href="modificar.do">Modificar dades</a>
               <a href="eliminatusuari.do">Eliminar usuari</a>
               <a href="logout.do">Tancar sessió</a>
           <%}%>

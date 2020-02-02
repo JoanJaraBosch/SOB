@@ -1,8 +1,20 @@
 {
   "commands": [
     {
+      "URI": "/modificar",
+      "class": "command.ModificarClientCommand" 
+    },
+    {
       "URI": "/registre",
       "class": "command.RegisterClientCommand" 
+    },
+    {
+      "URI": "/writeModificatRenter",
+      "class": "command.WriteModificatRenterCommand" 
+    },
+    {
+      "URI": "/writeModificatTenant",
+      "class": "command.WriteModificatTenantCommand" 
     },
     {
       "URI": "/writeRenter",
@@ -19,6 +31,10 @@
     {
       "URI": "/tipeRegister",
       "class": "command.EscollirCommand" 
+    },
+    {
+      "URI": "/tipeModificar",
+      "class": "command.EscollirModificarCommand" 
     },
     {
       "URI": "/writeTenant",
