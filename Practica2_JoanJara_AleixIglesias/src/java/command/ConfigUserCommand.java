@@ -59,7 +59,7 @@ public class ConfigUserCommand implements Command {
             Response res1=tClient.updateTenant(user.getId(),user);
         }
         
-        
+        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/index.jsp").forward(request, response);

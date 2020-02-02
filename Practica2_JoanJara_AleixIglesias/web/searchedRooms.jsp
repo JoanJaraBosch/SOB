@@ -5,7 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<jsp:useBean id="user" class="backend.Renter" scope="session" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,8 +37,8 @@
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
                 <a href="addRoom.jsp">Afegir habitació</a>
-                <a href="registre.do">Modificar habitació</a>
-                <a href="login.do">Eliminar habitació</a>
+                <a href="login.do">Modificar habitació</a>
+                <a href="eliminarroom.do">Eliminar habitació</a>
                 <% }else{%>
                <a href="registre.do">Llogar habitació</a>
                <%}%>

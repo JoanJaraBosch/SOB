@@ -40,6 +40,7 @@ public class EliminarUsuariCommand implements Command {
                 renterC.deleteById(r.getId());
                 request.getSession().invalidate();
             }
+            request.getSession().setAttribute("usuariClient", null);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);      
     }

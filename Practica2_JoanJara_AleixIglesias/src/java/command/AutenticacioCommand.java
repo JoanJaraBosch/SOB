@@ -43,6 +43,7 @@ public class AutenticacioCommand implements Command {
                     tenantList);
             if(id==null){
                 request.setAttribute("errorLogin", 404);
+                request.getSession().setAttribute("usuariClient", null);
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{
@@ -64,6 +65,7 @@ public class AutenticacioCommand implements Command {
                     renterList);
             if(id==null){
                 request.setAttribute("status", 404);
+                request.getSession().setAttribute("usuariClient", null);
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/login.jsp").forward(request, response);
             }else{

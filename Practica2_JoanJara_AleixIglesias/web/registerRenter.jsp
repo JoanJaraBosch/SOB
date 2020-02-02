@@ -1,4 +1,4 @@
-<jsp:useBean id="user" class="backend.Renter" scope="request" />
+<jsp:useBean id="user" class="backend.Renter" scope="session" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -29,8 +29,8 @@
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
                 <a href="addRoom.jsp">Afegir habitació</a>
-                <a href="registre.do">Modificar habitació</a>
-                <a href="login.do">Eliminar habitació</a>
+                <a href="login.do">Modificar habitació</a>
+                <a href="eliminarroom.do">Eliminar habitació</a>
                 <% }else{%>
                <a href="registre.do">Llogar habitació</a>
                <%}%>

@@ -47,6 +47,10 @@
     {
       "URI": "/configuser",
       "class": "command.ConfigUserCommand" 
+    },
+    {
+      "URI": "/eliminarroom",
+      "class": "command.EliminarRoomCommand" 
     }
   ]
 }

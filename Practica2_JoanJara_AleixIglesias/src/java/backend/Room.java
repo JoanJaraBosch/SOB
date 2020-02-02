@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Room.findByIndoor", query = "SELECT c FROM Room c WHERE c.indoor = :indoor"),
     @NamedQuery(name = "Room.findByZip", query = "SELECT c FROM Room c WHERE c.zip = :zip"),
     @NamedQuery(name = "Room.findByImage", query = "SELECT c FROM Room c WHERE c.imatge = :imatge"),
+    @NamedQuery(name = "Room.findByRenter", query = "SELECT c FROM Room c WHERE c.renter = :renter"),
     @NamedQuery(name = "Room.findByFurnished", query = "SELECT c FROM Room c WHERE c.furnished = :furnished")})
 public class Room implements Serializable, Comparable<Room>{
     private static final long serialVersionUID = 1L;

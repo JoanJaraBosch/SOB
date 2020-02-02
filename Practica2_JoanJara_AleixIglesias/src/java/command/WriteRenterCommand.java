@@ -48,6 +48,7 @@ public class WriteRenterCommand implements Command {
             user.setId(user.maxID(res.readEntity(new GenericType<List<Renter>>(){}))+1);
             Response res1=tClient.createRenter(user);
             System.out.println(res1);
+            request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
             if(res1.getStatus()==201){
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);

@@ -25,6 +25,7 @@ public class ConfigCommand implements Command {
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
+        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
         context.getRequestDispatcher("/configuser.jsp").forward(request, response);
     }
     
