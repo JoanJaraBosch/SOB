@@ -5,7 +5,6 @@
  */
 package command;
 
-import frontend.TenantClient;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joan
  */
-public class LogInCommand implements Command {
+public class ConfigCommand implements Command {
 
     @Override
     public void execute(
@@ -26,6 +25,7 @@ public class LogInCommand implements Command {
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/login.jsp").forward(request, response);
+        context.getRequestDispatcher("/configuser.jsp").forward(request, response);
     }
+    
 }

@@ -39,6 +39,14 @@
     {
       "URI": "/eliminatusuari",
       "class": "command.EliminarUsuariCommand" 
+    },
+    {
+      "URI": "/config",
+      "class": "command.ConfigCommand" 
+    },
+    {
+      "URI": "/configuser",
+      "class": "command.ConfigUserCommand" 
     }
   ]
 }

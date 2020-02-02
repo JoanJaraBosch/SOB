@@ -47,5 +47,10 @@ public class TenantClient {
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).delete();
     }
+     
+      public Response updateTenant(Integer id, Tenant tenant) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).put(Entity.json(tenant));
+    }
 }
 
