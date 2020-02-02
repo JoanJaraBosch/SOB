@@ -67,6 +67,14 @@
     {
       "URI": "/upgradeRoom",
       "class": "command.RoomDadesUpdateCommand" 
+    },
+    {
+      "URI": "/roomById",
+      "class": "command.MoreDetailsCommand" 
+    },
+    {
+      "URI": "/llogarHabitacio",
+      "class": "command.LlogarRoomCommand" 
     }
   ]
 }

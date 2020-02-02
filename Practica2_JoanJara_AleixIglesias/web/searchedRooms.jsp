@@ -76,7 +76,7 @@
 
                                     <form id="formRoom" method="post" action="roomById.do" class="form-inline">
                                         <input type="hidden" id="roomId" name="room" value="">
-                                        <button class="btn btn-success my-2 my-sm-0" id="habId" type="submit" name="idRoom" onclick="saveID()" value="${elem.roomID}">More details</button>
+                                        <button class="btn btn-success my-2 my-sm-0" id="habId" type="submit" name="idRoom" value="${elem.roomID}">More details</button>
                                     </form>
                                 </div>
                             </div>

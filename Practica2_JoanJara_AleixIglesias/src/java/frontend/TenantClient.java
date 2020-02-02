@@ -5,6 +5,7 @@
  */
 package frontend;
 
+import backend.Room;
 import backend.Tenant;
 import java.util.Base64;
 import javax.ws.rs.ClientErrorException;
@@ -51,6 +52,13 @@ public class TenantClient {
     public Response updateTenant(Integer id, Tenant t) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).put(Entity.json(t));
+
+    }
+    
+    
+     public Response llogarHabitacio(Integer id, Room r) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id)).path("/rent");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).put(Entity.json(r));
 
     }
 }
