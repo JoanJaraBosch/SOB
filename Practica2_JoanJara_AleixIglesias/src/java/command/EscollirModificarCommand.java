@@ -24,7 +24,8 @@ public class EscollirModificarCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        if(Boolean.parseBoolean(request.getParameter("tipus"))){
+        Boolean bol = (Boolean)request.getSession().getAttribute("tipus");
+        if(bol){
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/modificarTenant.jsp").forward(request, response);
             

@@ -28,7 +28,7 @@ public class WriteModificatTenantCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-            Tenant user = (Tenant)request.getSession().getAttribute("userClient");
+            Tenant user = (Tenant)request.getSession().getAttribute("usuariClient");
             user.setPassword(encryptar.EncryptarPassword.getMD5(request.getParameter("passwordT")));
             user.setName(request.getParameter("first_nameT"));
             user.setSurname(request.getParameter("last_nameT"));
@@ -40,7 +40,7 @@ public class WriteModificatTenantCommand implements Command {
             TenantClient tClient = new TenantClient();
             Response res1=tClient.updateTenant(user.getId(),user);
             System.out.println(res1);
-            if(res1.getStatus()==201 || res1.getStatus()==403){
+            if(res1.getStatus()==201 || res1.getStatus()==202){
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);
             }

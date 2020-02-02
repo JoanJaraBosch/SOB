@@ -5,27 +5,21 @@
  */
 package command;
 
-import backend.Renter;
 import backend.Room;
-import backend.Tenant;
-import encryptar.EncryptarPassword;
 import frontend.RenterClient;
 import frontend.RoomClient;
-import frontend.TenantClient;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Joan
  */
-public class RoomRegisterCommand implements Command {
+public class RoomDadesUpdateCommand implements Command {
 
     @Override
     public void execute(
@@ -34,10 +28,8 @@ public class RoomRegisterCommand implements Command {
             throws ServletException, IOException {
             
         
-        Room room = new Room();
+        Room room = (Room)request.getSession().getAttribute("RoomModificada");
         RoomClient tClient = new RoomClient();
-        Response res = tClient.findAllRooms();
-        RenterClient renter = new RenterClient();
         
         room.setDescription(request.getParameter("description"));
         room.setCity(request.getParameter("city"));
@@ -47,18 +39,17 @@ public class RoomRegisterCommand implements Command {
         room.setImatge(request.getParameter("image_url"));        
         room.setSimple(Boolean.parseBoolean(request.getParameter("simple")));
         room.setIndoor(Boolean.parseBoolean(request.getParameter("indoor")));
-        room.setFurnished(Boolean.parseBoolean(request.getParameter("furnsihed")));       
-        room.setRoomID(room.maxID(res.readEntity(new GenericType<List<Room>>(){}))+1);
-        room.setRenter((Renter)request.getSession().getAttribute("usuariClient"));
-        System.out.println(room);
+        room.setFurnished(Boolean.parseBoolean(request.getParameter("furnsihed")));    
         
-        Response resp = tClient.createRoom(room);
-        ServletContext context = request.getSession().getServletContext();
-        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("usuariClient"));
-        if(resp.getStatus()!=201){
-            context.getRequestDispatcher("/error.jsp").forward(request, response);
-        }else{
-            context.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
+       Response res1=tClient.updateRenter(room.getRoomID(),room);
+            System.out.println(res1);
+            if(res1.getStatus()==201 || res1.getStatus()==202){
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            else{
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/registerRenter.jsp").forward(request, response);
+            }
     }
 }

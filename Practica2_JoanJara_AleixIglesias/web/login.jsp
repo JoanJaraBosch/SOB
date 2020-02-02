@@ -35,13 +35,11 @@
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
                 <a href="addRoom.jsp">Afegir habitació</a>
-                <a href="login.do">Modificar habitació</a>
+                <a href="modificarHabitacio.do">Modificar habitació</a>
                 <a href="eliminarroom.do">Eliminar habitació</a>
-                <% }else{%>
-               <a href="registre.do">Llogar habitació</a>
-               <%}%>
-              <a href="config.do">Modificar dades</a>
-              <a href="eliminatuser.do">Eliminar usuari</a>
+                <% }%>
+              <a href="modificar.do">Modificar dades</a>
+              <a href="eliminatusuari.do">Eliminar usuari</a>
               <a href="logout.do">Tancar sessió</a>
           <%}%>
       </nav>

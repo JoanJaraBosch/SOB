@@ -17,13 +17,13 @@
         <script src="javascript/search.js"></script>
     </head>
     <body id="rooms">
-    <header>
-    <div class="wrapper">
-      <div class="logo">
-          Alquil·ler d'habitacions
-      </div>
-            <hr style="border-color:white;">
-      <nav>
+     <header>
+          <div class="wrapper">
+            <div class="logo">
+                Alquil·ler d'habitacions
+            </div>
+              <hr style="border-color:white;">
+           <nav>
           <a href="index.jsp">Buscador</a>
           <% 
             if(request.getSession().getAttribute("usuariClient")==null){ 
@@ -37,18 +37,16 @@
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
                 <a href="addRoom.jsp">Afegir habitació</a>
-                <a href="login.do">Modificar habitació</a>
+                <a href="modificarHabitacio.do">Modificar habitació</a>
                 <a href="eliminarroom.do">Eliminar habitació</a>
-                <% }else{%>
-               <a href="registre.do">Llogar habitació</a>
-               <%}%>
-              <a href="config.do">Modificar dades</a>
-              <a href="eliminatuser.do">Eliminar usuari</a>
+                <% }%>
+              <a href="modificar.do">Modificar dades</a>
+              <a href="eliminatusuari.do">Eliminar usuari</a>
               <a href="logout.do">Tancar sessió</a>
           <%}%>
       </nav>
-    </div>
-    </header>
+          </div>
+      </header>
     <br />
     <div class="barra_buscadora wrapper">
     <form action="search.do" method="post">
@@ -65,7 +63,7 @@
                         <c:forEach items="${rooms}" var="elem">
                             <div class="col-md-6 mb-3">
                                 <div class="card card-body">
-                                    <h2>${elem.renter.name}</h2>
+                                    <h2>${elem.renter.username}</h2>
                                     <image src="${elem.imatge}" />
                                     <h2 id="preuMes" class="currency">${elem.price}€</h2>
                                     <p id="descripcio" class="text-muted"> ${elem.description}</p>

@@ -26,7 +26,7 @@ public class LogInCommand implements Command {
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
+        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("usuariClient"));
         context.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }

@@ -75,6 +75,11 @@ public class RoomClient {
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete();
     }
+     
+      public Response updateRenter(Integer id, Room room) throws ClientErrorException{
+        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(Entity.json(room));
+    }
     /**
      * Mètode per a tancar la comunicació amb la api REST
      */

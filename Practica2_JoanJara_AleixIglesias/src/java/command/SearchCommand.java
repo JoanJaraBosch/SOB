@@ -50,7 +50,7 @@ public class SearchCommand implements Command {
         }
         System.out.println(habitacions);
         request.setAttribute("habitacions", habitacions);
-        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("userClient"));
+        request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("usuariClient"));
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/searchedRooms.jsp").forward(request, response);

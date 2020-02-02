@@ -29,7 +29,7 @@ public class WriteModificatRenterCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-            Renter user = (Renter)request.getSession().getAttribute("userClient");
+            Renter user = (Renter)request.getSession().getAttribute("usuariClient");
             user.setName(request.getParameter("first_nameR"));
             user.setSurname(request.getParameter("last_nameR"));
             user.setEmail(request.getParameter("emailR"));
@@ -45,7 +45,7 @@ public class WriteModificatRenterCommand implements Command {
             RenterClient tClient = new RenterClient();
             Response res1=tClient.updateRenter(user.getId(),user);
             System.out.println(res1);
-            if(res1.getStatus()==201 || res1.getStatus()==403){
+            if(res1.getStatus()==201 || res1.getStatus()==202){
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);
             }

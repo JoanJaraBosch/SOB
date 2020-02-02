@@ -1,30 +1,25 @@
 <%-- 
-    Document   : menutenant
-    Created on : 30-ene-2020, 18:19:06
+    Document   : room_modificacio
+    Created on : 02-feb-2020, 17:00:29
     Author     : Joan
 --%>
 
-<%-- 
-    Document   : menu
-    Created on : 23-ene-2020, 17:48:23
-    Author     : Joan
---%>
-
-<jsp:useBean id="user" class="backend.Tenant" scope="session" />
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<jsp:useBean id="user" class="backend.Renter" scope="session" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Llogar habitació</title>
+        <title>Afegir habitaciÃ³</title>
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
     </head>
-    <body>
-        <header>
+    <header>
           <div class="wrapper">
             <div class="logo">
-                Alquil·ler d'habitacions
+                AlquilÂ·ler d'habitacions
             </div>
               <hr style="border-color:white;">
            <nav>
@@ -40,23 +35,22 @@
            <% 
             if(request.getSession().getAttribute("usuariClient")!=null && request.getSession().getAttribute("usuariClient")instanceof backend.Renter){ 
                 %>
-                <a href="addRoom.jsp">Afegir habitació</a>
-                <a href="login.do">Modificar habitació</a>
-                <a href="eliminarroom.do">Eliminar habitació</a>
-                <% }else{%>
-               <a href="registre.do">Llogar habitació</a>
-               <%}%>
-              <a href="config.do">Modificar dades</a>
-              <a href="eliminatuser.do">Eliminar usuari</a>
-              <a href="logout.do">Tancar sessió</a>
+                <a href="addRoom.jsp">Afegir habitaciÃ³</a>
+                <a href="modificarHabitacio.do">Modificar habitaciÃ³</a>
+                <a href="eliminarroom.do">Eliminar habitaciÃ³</a>
+                <% }%>
+              <a href="modificar.do">Modificar dades</a>
+              <a href="eliminatusuari.do">Eliminar usuari</a>
+              <a href="logout.do">Tancar sessiÃ³</a>
           <%}%>
       </nav>
           </div>
       </header>
+    <body>
         <% if (response.getStatus() != 201) { %>
         <p>Error al crear l'habitacio</p><%}%>
         <h2>Dades de l'habitacio</h2>  
-        <form method="post" action="writeRoom.do">
+        <form method="post" action="upgradeRoom.do">
           <table>
                 <tr>
                     <td>
@@ -115,34 +109,6 @@ size=32
                 </tr>
                 <tr>
                     <td>
-                        Pet:
-                    </td>
-                    <td>
-                        <input type="radio" name="pet" value="true" checked/>
-                          Yes
-                        </label>
-                        <label class="radio">
-                         <input type="radio" name="pet" value="false" />
-                          No
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Smoker:
-                    </td>
-                    <td>
-                        <input type="radio" name="smoker" value="true" checked/>
-                          Yes
-                        </label>
-                        <label class="radio">
-                         <input type="radio" name="smoker" value="false" />
-                          No
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         Simple: 
                     </td>
                     <td>
@@ -171,14 +137,14 @@ size=32
                 </tr>
                  <tr>
                     <td>
-                        Outdoor: 
+                        Indoor 
                     </td>
                     <td>
                         <input type="radio" name="outdoor" value="true" checked/>
                           Yes
                         </label>
                         <label class="radio">
-                         <input type="radio" name="outdoor" value="false" />
+                         <input type="radio" name="indoor" value="false" />
                           No
                         </label>
                     </td>

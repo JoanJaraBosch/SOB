@@ -57,16 +57,16 @@
       "class": "command.EliminarUsuariCommand" 
     },
     {
-      "URI": "/config",
-      "class": "command.ConfigCommand" 
-    },
-    {
-      "URI": "/configuser",
-      "class": "command.ConfigUserCommand" 
-    },
-    {
       "URI": "/eliminarroom",
       "class": "command.EliminarRoomCommand" 
+    },
+    {
+      "URI": "/modificarHabitacio",
+      "class": "command.ModificarRoomCommand" 
+    },
+    {
+      "URI": "/upgradeRoom",
+      "class": "command.RoomDadesUpdateCommand" 
     }
   ]
 }
