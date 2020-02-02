@@ -58,7 +58,7 @@ public class TenantClient {
     
      public Response llogarHabitacio(Integer id, Room r) throws ClientErrorException{
         WebTarget resource = webTarget.path("/").path(String.valueOf(id)).path("/rent");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).put(Entity.json(r));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, aut).post(Entity.json(r));
 
     }
 }

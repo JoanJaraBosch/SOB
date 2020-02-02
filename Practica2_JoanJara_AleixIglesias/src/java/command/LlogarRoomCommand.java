@@ -34,6 +34,7 @@ public class LlogarRoomCommand implements Command{
         // 2. produce the view with the web result
         Room room = (Room) request.getSession().getAttribute("roomLlogar");
         Response res = tenantC.llogarHabitacio(t.getId(), room);
+        System.out.println(res);
         ServletContext context = request.getSession().getServletContext();
         request.getSession().setAttribute("usuariClient", request.getSession().getAttribute("usuariClient"));
         if(res.getStatus()==201 || res.getStatus()==202 || res.getStatus()==200){
