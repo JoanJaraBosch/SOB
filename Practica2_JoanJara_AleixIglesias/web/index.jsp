@@ -39,7 +39,7 @@
                 %>
                 <a href="addRoom.jsp">Afegir habitació</a>
                 <a href="registre.do">Modificar habitació</a>
-                <a href="eliminatroom.do">Eliminar habitació</a>
+                <a href="eliminarroom.do">Eliminar habitació</a>
                 <% }else{%>
                <a href="registre.do">Llogar habitació</a>
                <%}%>

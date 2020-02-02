@@ -75,12 +75,6 @@ public class RoomClient {
         WebTarget resource = webTarget.path("/").path(String.valueOf(id));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete();
     }
-
-     public Response deleteById(Integer id) throws ClientErrorException{
-        WebTarget resource = webTarget.path("/").path(String.valueOf(id));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete();
-    }
-     
     /**
      * Mètode per a tancar la comunicació amb la api REST
      */
