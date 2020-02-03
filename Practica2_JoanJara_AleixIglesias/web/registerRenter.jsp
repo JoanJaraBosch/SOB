@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Registre de l'usuari</title>
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/formulari.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
@@ -39,9 +40,6 @@
           </div>
       </header>
     <body>
-        <% if (response.getStatus() != 201) { %>
-        <p>Error al registrar el Renter</p><%}%>
-        <h2>Dades de l'usuari</h2>  
         <form method="post" action="writeRenter.do">
             <table>
                 <tr>

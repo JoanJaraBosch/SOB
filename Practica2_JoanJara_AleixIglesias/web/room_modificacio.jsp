@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Afegir habitació</title>
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/formulari.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
@@ -46,10 +47,7 @@
       </nav>
           </div>
       </header>
-    <body>
-        <% if (response.getStatus() != 201) { %>
-        <p>Error al crear l'habitacio</p><%}%>
-        <h2>Dades de l'habitacio</h2>  
+    <body> 
         <form method="post" action="upgradeRoom.do">
           <table>
                 <tr>
