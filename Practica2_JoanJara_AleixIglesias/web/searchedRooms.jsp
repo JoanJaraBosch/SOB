@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Cercador d'habitacions</title>
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/habitacions.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
@@ -61,25 +62,19 @@
                 <c:choose>
                     <c:when test = "${rooms != null}">
                         <c:forEach items="${rooms}" var="elem">
-                            <div class="col-md-6 mb-3">
-                                <div class="card card-body">
-                                    <h2>${elem.renter.username}</h2>
-                                    <image src="${elem.imatge}" />
-                                    <h2 id="preuMes" class="currency">${elem.price}€</h2>
-                                    <p id="descripcio" class="text-muted"> ${elem.description}</p>
-                                    <div class="row-form"> 
-                                        <h5>${elem.city}. ${elem.adresa}, ${elem.zip}</h5>
-                                        <h5>Habitacio simple: ${elem.simple} </h5>
-                                        <h5>Habitacio indoor: ${elem.indoor} </h5>
-                                        <h5>Habitacio moblada: ${elem.furnished} </h5>
-                                    </div>
-
-                                    <form id="formRoom" method="post" action="roomById.do" class="form-inline">
-                                        <input type="hidden" id="roomId" name="room" value="">
-                                        <button class="btn btn-success my-2 my-sm-0" id="habId" type="submit" name="idRoom" value="${elem.roomID}">More details</button>
-                                    </form>
-                                </div>
+                            <div class="habitacio_dades">
+                            <br/>
+                            <hr style="border-color:orange; margin-left:20px" width="80%">
+                            <br/>
+                            <img class="imatge_habitacio" src="${elem.imatge}" />
+                            <p id="preuMes" class="currency">${elem.price}€</p>
+                            <p id="descripcio" class="text-muted"> ${elem.description}</p>
                             </div>
+                            <br/>
+                            <form id="formRoom" method="post" action="roomById.do" class="form-inline">
+                                <input type="hidden" id="roomId" name="room" value="">
+                                <button class="buto_mes_detalls" id="habId" type="submit" name="idRoom" value="${elem.roomID}">Més detalls</button>
+                            </form>
                         </c:forEach> 
                     </c:when>
                     <c:otherwise> <div id="noHab" class="card card-body"><div class="col"><h2> No s'han trobat habitacions. </h2> </div></div></c:otherwise>

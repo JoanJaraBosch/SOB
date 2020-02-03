@@ -4,6 +4,7 @@
     Author     : Joan
 --%>
 
+<%@page import="backend.Room"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="user" class="backend.Renter" scope="session" />
@@ -13,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Més informacio de la habitacio</title>
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/habitacions.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
@@ -50,15 +52,40 @@
     <br />
     <body>
         <div>
-            <h2>${roomLlogar.renter.username}</h2>
             <image src="${roomLlogar.imatge}" />
-            <h2 id="preuMes" class="currency">${roomLlogar.price}€</h2>
+            <p id="preuMes" class="currency">${roomLlogar.price}€</p>
             <p id="descripcio" class="text-muted"> ${roomLlogar.description}</p>
             <div class="row-form"> 
-                <h5>${roomLlogar.city}. ${roomLlogar.adresa}, ${elem.zip}</h5>
-                <h5>Habitacio simple: ${roomLlogar.simple} </h5>
-                <h5>Habitacio indoor: ${roomLlogar.indoor} </h5>
-                <h5>Habitacio moblada: ${roomLlogar.furnished} </h5>
+                <br/>
+                <p id="descripcio">•Adreça: ${roomLlogar.city}. ${roomLlogar.adresa}, ${elem.zip}</p>
+                <%
+                    Room r=(Room)request.getSession().getAttribute("roomLlogar");
+                    if(r.getSimple()){
+                    %> 
+                    <p id="descripcio">•L'habitació és simple</p>
+               <%
+                    }else{
+               %>
+                <p id="descripcio">•L'habitació és doble o de més d'una persona</p>
+                <%}%>
+                <%
+                    if(r.getFurnished()){
+                    %> 
+                    <p id="descripcio">•L'habitació està moblada.</p>
+               <%
+                    }else{
+               %>
+                <p id="descripcio">•L'habitació no està moblada.</p>
+                <%}%>
+                <%
+                    if(r.getIndoor()){
+                    %> 
+                    <p id="descripcio">•L'habitació és interior.</p>
+               <%
+                    }else{
+               %>
+               <ul><p id="descripcio">•L'habitació és exterior.</p></ul>
+                <%}%>
             </div>
             <%
                 if(request.getSession().getAttribute("usuariClient") instanceof backend.Tenant){
@@ -69,6 +96,9 @@
             </form>
             <%}%>
         </div>
+        <br/>
+        <br/>
+        <br/>
     </div>
     </body>
 </html>
