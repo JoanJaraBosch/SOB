@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Afegir habitació</title>
         <link rel="stylesheet" href="css/search.css">
-        <link rel="stylesheet" href="css/formulari.css">
+        <link rel="stylesheet" href="css/formulari2.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="javascript/search.js"></script>
@@ -55,9 +55,8 @@
                         Description:
                     </td>
                     <td>
-                        <input type="text" style="WIDTH: 228px; HEIGHT: 98px"
-size=32
-                               name="description" required />
+                        <textarea name="textarea" rows="10" cols="50"
+                               name="description" required ></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -138,7 +137,7 @@ size=32
                         Indoor 
                     </td>
                     <td>
-                        <input type="radio" name="outdoor" value="true" checked/>
+                        <input type="radio" name="indoor" value="true" checked/>
                           Yes
                         </label>
                         <label class="radio">
@@ -156,5 +155,7 @@ size=32
                 </tr>
             </table>
         </form>
+        </br>
+        </br>
     </body>
 </html>
