@@ -33,13 +33,13 @@ public class EliminarUsuariCommand implements Command {
                 TenantClient tenantC = new TenantClient();
                 Response res = tenantC.deleteById(t.getId());
                 System.out.println(res);
-                request.getSession().invalidate();
             }else{
                 Renter r = (Renter)request.getSession().getAttribute("usuariClient");
                 RenterClient renterC = new RenterClient();
-                renterC.deleteById(r.getId());
-                request.getSession().invalidate();
+                Response resp = renterC.deleteById(r.getId());
+                System.out.println(resp);
             }
+            request.getSession().invalidate();
             request.getSession().setAttribute("usuariClient", null);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);      
