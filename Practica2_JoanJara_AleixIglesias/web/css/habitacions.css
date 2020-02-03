@@ -63,3 +63,19 @@ p {
   background-color: orange;
   color: white;
 }
+
+
+.more_details {
+    border-radius: 12px;
+    margin-left: 20px; 
+    background-color: white; 
+    color: black; 
+    border: 2px solid orange;
+    width: 60px;
+    height: 40px;
+}
+
+.more_details:hover {
+  background-color: orange;
+  color: white;
+}

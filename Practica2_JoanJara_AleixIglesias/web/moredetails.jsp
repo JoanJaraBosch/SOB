@@ -92,7 +92,7 @@
                 %>
             <form id="formRoom" method="post" action="llogarHabitacio.do" class="form-inline">
                 <input type="hidden" id="roomId" name="room" value="">
-                <button class="btn btn-success my-2 my-sm-0" id="habId" type="submit" name="idRoom" value="${elem.roomID}">Llogar habitacio</button>
+                <button class="buto_mes_detalls" id="habId" type="submit" name="idRoom" value="${elem.roomID}">Llogar habitacio</button>
             </form>
             <%}%>
         </div>
